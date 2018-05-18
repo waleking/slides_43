@@ -1,0 +1,230 @@
+% arara: pdflatex
+% !arara: indent: {overwrite: on}
+\documentclass[aspectratio=1610]{beamer}
+%\documentclass{beamer}
+
+\usepackage{ctex}
+
+\usetheme{CambridgeUS}
+
+\definecolor{frenchblue}{HTML}{0071BB}
+
+%-change headline in each page-------------------------------
+\setbeamercolor{palette tertiary}{fg=white, bg=frenchblue}
+\setbeamertemplate{headline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.65ex,dp=1.5ex,center]{section in head/foot}%
+    \usebeamerfont{section in head/foot}\thesection.\insertsectionhead\hspace*{2ex}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,center]{subsection in head/foot}%
+    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+
+%-change title part in each page-------------------------------
+\setbeamercolor{frametitle}{fg=frenchblue,bg=white}
+
+
+%-change foot part in each page-------------------------------
+\makeatother
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.0\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.63\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\textcolor{black}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.37\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}% 
+  \textcolor{black}\insertdate \hspace{0.2cm}
+    \textcolor{black}\insertframenumber{} \textcolor{black}/ \textcolor{black}\inserttotalframenumber\hspace*{1ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatletter
+\setbeamertemplate{navigation symbols}{}
+
+%---remove headline for the Outline pages
+\makeatletter
+    \newenvironment{withoutheadline}{
+        \setbeamertemplate{headline}[default]
+        \def\beamer@entrycode{\vspace*{-\headheight}}
+    }{}
+\makeatother
+
+
+%---remove headline and reset footline for publication list pages
+\makeatletter
+    \newenvironment{transparentFootline}{
+	\setbeamertemplate{headline}[default]
+        \def\beamer@entrycode{\vspace*{-\headheight}}
+    
+	\setbeamertemplate{footline}
+		{
+			\leavevmode%
+			\hbox{%
+		\pgfsetfillopacity{0}\begin{beamercolorbox}[wd=.63\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+			    \usebeamerfont{title in head/foot}\textcolor{black}\insertshorttitle
+			  \end{beamercolorbox}%
+		\pgfsetfillopacity{0}\begin{beamercolorbox}[wd=.37\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}% 
+%\pgfsetfillopacity{1} \hspace{1.2cm}
+\pgfsetfillopacity{1} \textcolor{black}\insertdate \hspace{0.2cm}
+    \textcolor{black}\insertframenumber{} \textcolor{black}/ \textcolor{black}\inserttotalframenumber\hspace*{1ex}
+  \end{beamercolorbox}
+			}
+			\vskip0pt%
+		}
+    }{}
+\makeatother
+
+
+%---remove headline and reset footline for last pages
+\makeatletter
+    \newenvironment{transparentFootline_lastpages}{
+\setbeamertemplate{headline}
+{
+  \leavevmode%
+  \hbox{%
+  \pgfsetfillopacity{0}\begin{beamercolorbox}[wd=\paperwidth,ht=2.65ex,dp=1.5ex,center]{subsection in head/foot}empty\end{beamercolorbox}}%
+  \pgfsetfillopacity{1}
+  \vskip0pt%
+}
+        \setbeamertemplate{footline}
+		{
+			\leavevmode%
+			\hbox{%
+		\pgfsetfillopacity{0}\begin{beamercolorbox}[wd=.63\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+			    \usebeamerfont{title in head/foot}\textcolor{black}\insertshorttitle
+			  \end{beamercolorbox}%
+		\pgfsetfillopacity{0}\begin{beamercolorbox}[wd=.37\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}% 
+%\pgfsetfillopacity{1} \hspace{1.2cm}
+\pgfsetfillopacity{1} \textcolor{white}\insertdate \hspace{0.2cm}
+    \textcolor{white}\insertframenumber{} \textcolor{white}/ \textcolor{white}\inserttotalframenumber\hspace*{1ex}
+  \end{beamercolorbox}
+			}
+			\vskip0pt%
+		}
+    }{}
+\makeatother
+
+
+%---change color of items in enumerate environment--
+\setbeamertemplate{enumerate items}[default]
+
+\usepackage{bm}
+\usepackage{comment}
+\usepackage{graphics} % used for scalebox
+\usepackage{multirow}%used for multicolumn
+\usepackage{array}%used for vrule
+\usepackage{subfigure}
+\usepackage{threeparttable} % used for footnotes in table
+
+%---set tikz highlighter------------------------
+\usepackage{multirow, booktabs, dcolumn, color} % Tables
+\usepackage[beamer,customcolors]{hf-tikz}
+\usetikzlibrary{calc}
+% To set the hypothesis highlighting boxes red.
+\tikzset{hl/.style={
+    set fill color=red!80!black!40,
+    set border color=red!80!black,
+  },
+}
+%-----------------------------------------------
+
+%---set tikz marker-----------------------------
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\tikzset{>=stealth}
+
+\newcommand{\tikzmark}[3][]{\tikz[overlay,remember picture,baseline] \node [anchor=base,#1](#2) {#3};}
+%-----------------------------------------------
+
+%---set textblock----------------------------
+\usepackage[absolute,overlay]{textpos}
+%--------------------------------------------------------
+
+%use bold arrow
+\usepackage{marvosym}
+
+%used for aligning the figure to left
+\usepackage[export]{adjustbox}
+
+%used for colored block
+\usepackage[listings,theorems]{tcolorbox}
+
+%used for algorithm
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{algorithmic}
+
+
+%########################################
+%########################################
+% Custom title page
+\setbeamertemplate{title page}
+{
+  %\vskip-0.59cm%
+  \hskip13.0cm%
+  \inserttitlegraphic%
+  \vfill%
+    \begin{beamercolorbox}[sep=12pt]{title}
+      \ifx\insertsubtitle\@empty%
+      \else%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\begin{tikzpicture}
+			\node[fill=frenchblue,draw=frenchblue, text=white] at (0,0) {\insertsubtitle};
+			\end{tikzpicture}
+		}%
+        \vskip0.25em%
+      \fi%
+      %\begin{center} \line(1,0){450} \end{center}
+	  \usebeamerfont{title}\textcolor{frenchblue}\inserttitle\par%
+    \end{beamercolorbox}%
+    
+    \vskip2em\par
+    
+    \begin{beamercolorbox}[sep=6pt]{author}
+      \hskip23.5em \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=6pt]{institute}
+      \hskip21em \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=6pt]{date}
+      \hskip25em \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}
+  \vfill
+}
+
+\titlegraphic{\includegraphics[width=1cm]{pkulogo}
+}
+
+\title{基于知识迁移的社交媒体事件检测方法研究}
+\subtitle{博士论文答辩报告}
+\author{博士生：黄威靖\\ \hskip23em 导师：王腾蛟教授}
+\institute{北京大学信息科学技术学院数据库实验室}
+\date{2018-06-05}
+%########################################
+%########################################
+
+\begin{document}
+
+
+\begin{frame}[plain]
+\maketitle
+\end{frame}
+
+
+%\include{chaps/chapIntro}
+\include{chaps/chapK2Social}
+%\include{chaps/chapTransDetector}
+%\include{chaps/chapUMIETM}
+%\include{chaps/chapTD+}
+%\include{chaps/chapConclusion}
+%\include{chaps/chapPublications}
+%\include{chaps/chapAcknowledgements}
+
+\end{document}
