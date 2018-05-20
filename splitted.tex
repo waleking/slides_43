@@ -25,8 +25,17 @@
 
 
 %-change title part in each page-------------------------------
-\setbeamercolor{frametitle}{fg=frenchblue,bg=white}
-
+\setbeamercolor{frametitle}{fg=frenchblue}
+\defbeamertemplate*{frametitle}{smoothbars theme}
+{%
+	\nointerlineskip%
+	\begin{beamercolorbox}[wd=\paperwidth,leftskip=.3cm,rightskip=.3cm plus1fil]{frametitle}
+	\vspace*{-0.2cm}
+	\vskip.3ex
+	\usebeamerfont*{frametitle}\insertframetitle%
+	\vskip.3ex
+	\end{beamercolorbox}%
+}
 
 %-change foot part in each page-------------------------------
 \makeatother
@@ -161,6 +170,9 @@
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 \usepackage{algorithmic}
 
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+
 
 %########################################
 %########################################
@@ -218,12 +230,12 @@
 
 
 %\include{chaps/chapIntro}
-\include{chaps/chapK2Social}
-%\include{chaps/chapTransDetector}
+%\include{chaps/chapK2Social}
+\include{chaps/chapTransDetector}
 %\include{chaps/chapUMIETM}
 %\include{chaps/chapTD+}
 %\include{chaps/chapConclusion}
-\include{chaps/chapPublications}
-\include{chaps/chapAcknowledgements}
+%\include{chaps/chapPublications}
+%\include{chaps/chapAcknowledgements}
 
 \end{document}
