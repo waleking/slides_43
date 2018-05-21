@@ -131,8 +131,6 @@ GID& \#words*  & words  & NPMI & GID& \#words*& words & NPMI \\ \hline
 
 \begin{frame}
 \frametitle{实验结果：基于知识库结构的主题抽取质量}	
-Evaluation on Categroy-Level Topics in Knowledge Base.
-On more topics, semantic coherence is much better than LightLDA (same as LDA) in terms of NPMI[Roder, WSDM 2015]. 
 \begin{figure}[h]
 	\setlength{\abovecaptionskip}{0.cm}
 	\setlength{\belowcaptionskip}{0.cm}
@@ -180,14 +178,7 @@ squadron & fly & cancer & body & syria & world & battle & attack & htc & apps\\
 
 \begin{frame}
 \frametitle{实验结果：事件检测效果}	
-Effectiveness of event detection:
-\begin{enumerate}
-	\item \textsc{TransDetector} performs better in terms of the precision and the recall.
-	\item only sacrificing in the DERate slightly because an event could be grouped into multiple categories.
-	\begin{itemize}
-		\item the event \textit{``S\&P downgrade US credit rating"}, related to \textit{politics} and  \textit{financial} simultaneously.
-	\end{itemize}
-\end{enumerate}
+\noindent \textsc{TransDetector}在保证召回率的同时，将准确率提升9\%
 
 \begin{table}[h]
 \setlength{\abovecaptionskip}{0.cm}%set the distance between caption and table to 0 cm.
@@ -220,9 +211,8 @@ Effectiveness of event detection:
 
 \begin{frame}
 \frametitle{实验结果：事件检测效果}
-To understand why \textsc{TransDetector} performs better.
+\noindent \textsc{TransDetector}在较小规模的事件上召回率明显高于已有方法。
 \vfill
-Show the relationship between the recall and the event size.
 \begin{figure}[h]
 	\setlength{\abovecaptionskip}{0.cm}
 	\setlength{\belowcaptionskip}{0.cm}
@@ -235,8 +225,7 @@ Show the relationship between the recall and the event size.
 
 \begin{frame}
 \frametitle{实验结果：事件检测效果}	
-To understand why \textsc{TransDetector} performs better.\\
-Show the relationship between the recall and the event size, taking the \textit{military}-related events as an example.
+\noindent \textsc{TransDetector}在较小规模的事件上召回率明显高于已有方法。
 \begin{table}
 \setlength{\abovecaptionskip}{0.cm}%set the distance between caption and table to 0 cm.
 \setlength{\belowcaptionskip}{0.cm}
@@ -262,5 +251,22 @@ Show the relationship between the recall and the event size, taking the \textit{
 \end{threeparttable}  
 }
 \end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{TransDetector方法小结}
+\begin{columns}
+\column{0.75\textwidth}
+
+\begin{enumerate}
+	\item 提出了一种以知识库结构为导向的概念类相关的主题抽取方法；
+	\item 提出了新的概率主题模型CTrans-LDA用于知识的迁移，并能自适应社交媒体的语境动态演变；
+	\item 在知识迁移后的时间序列上进行事件检测，准确地检测社交媒体中蕴含的事件；
+	\item Edinburgh Twitter Corpus数据集上准确率相较于目前已有的最佳方法提升了9\%
+\end{enumerate}
+
+\column{0.75\textwidth}
+
+\end{columns}
 
 \end{frame}
