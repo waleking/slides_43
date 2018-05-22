@@ -120,7 +120,7 @@ We use Gibbs Sampling for solving CTrans-LDA.
 \end{itemize} 
 对比方法
 \begin{itemize}
-	\item Twevent, BurstyBTM, LSH, EDCoW, and TimeUserLDA
+	\item Twevent, BurstyBTM, LSH, EDCoW, TimeUserLDA
 \end{itemize}
 \end{frame}
 
@@ -128,7 +128,7 @@ We use Gibbs Sampling for solving CTrans-LDA.
 \frametitle{实验设置(2/3)}
 \noindent 事件评测基准
 \begin{itemize}
-	\item 基准1（Benchmark1）： 随\textit{Edinburgh twitter corpus}数据集附带的手工标注的27个事件\footnote{\url{http://demeter.inf.ed.ac.uk/cross/docs/Newswire_Events.tar.gz}}.
+	\item 基准1（Benchmark1）： 随\textit{Edinburgh twitter corpus}数据集附带的手工标注的27个事件\footnote{\tiny{\url{http://demeter.inf.ed.ac.uk/cross/docs/Newswire_Events.tar.gz}}}.
 \end{itemize}
 
 \intextsep=5pt plus 3pt minus 1pt % 调整表格与正文的上间距
@@ -136,9 +136,8 @@ We use Gibbs Sampling for solving CTrans-LDA.
 \setlength{\abovecaptionskip}{-0.5cm}%set the distance between caption and table to 0 cm.
 \setlength{\belowcaptionskip}{0.cm}
 \centering
-\caption{Statistics of labeled events.}
-\label{my-label}
-\scalebox{0.46}{
+\caption{基准1中27个事件及对应的规模大小.}
+\scalebox{0.42}{
 \begin{tabular}{|l|l|r|}
 \hline
 Event                                        & Date       & Event Size \\ \hline
@@ -164,9 +163,9 @@ rebels capture interational tripoli airport      & 21/08/2011 & 13       \tikzma
 }
 \end{table}
 
-\begin{textblock}{0.1}(13.5,11.7)
-  \footnotesize{11 Small events with fewer tweets}
- \end{textblock}
+\begin{textblock*}{25mm}(93mm,75mm)
+\noindent \tiny{11个事件的规模小于50（事件对应的微博少于50条）}
+\end{textblock*}
 \end{frame}
 
 \begin{frame}
@@ -174,8 +173,13 @@ rebels capture interational tripoli airport      & 21/08/2011 & 13       \tikzma
 \noindent 事件评测基准
 \begin{itemize}
 	%\item 基准1（Benchmark1）： 随\textit{Edinburgh twitter corpus}数据集附带的手工标注的27个事件\footnote{\url{http://demeter.inf.ed.ac.uk/cross/docs/Newswire_Events.tar.gz}}，{\color{red}但遗漏多个重要事件，如，“\textit{飓风艾琳登陆美国}”，“\textit{电影哈利波特与死亡圣器（下）上映}”等}。
-	\item 基准2（Benchmark2）： Twevent, BurstyBTM, LSH, EDCoW, TimeUserLDA， \textsc{TransDetector}检测出的候选事件经人工判断是否是真实发生的事件。
+	\item 基准2（Benchmark2）： Twevent, BurstyBTM, LSH, EDCoW, TimeUserLDA， \textsc{TransDetector}提供的候选事件经人工和Current\_events\footnote{\tiny{\url{https://en.wikipedia.org/wiki/Portal:Current_events}}}对比，判断是否真实发生。总计{\color{red}395}个事件。
 \end{itemize}
+\vspace{-0.15cm}
+\begin{figure}
+\centering
+\includegraphics[height=4.7cm]{img/current_events.jpg}
+\end{figure}
 \end{frame}
 
 
