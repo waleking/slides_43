@@ -80,22 +80,58 @@ We use Gibbs Sampling for solving CTrans-LDA.
 
 
 \begin{frame}
-\frametitle{\textsc{TransDetector}: Phase 3 (Detecting Events on Category-Level Word Time Series) (1/2)}	
-After transfer learning, we conduct analysis on category-level word time series, and detect events in microblog stream.
+\frametitle{\textsc{TransDetector}：阶段3（在概念类别相关的词的时间序列上进行事件检测）(1/2)}	
 \begin{figure}[h]
 		\setlength{\abovecaptionskip}{0.cm}
         \setlength{\belowcaptionskip}{0.cm}
         \centering
-        \caption{Visualizing Category-Level Word Time Series in Microblog Stream on Edinburgh Twitter Corpus (20110711-20110915), taking \textit{Military} as an example.}
+        \caption{与\textit{Military}概念类相关的词的时间序列的气泡图示意，在\textit{Edinburgh Twitter Corpus}数据集上（2011年6月30日至2011年9月15日）进行实验，气泡图中的各个气泡圆圈的半径大小正比于词在对应时间窗口中的文档频率。}
         \includegraphics[width=.99\columnwidth]{img/screenShot.png}
         \label{fig:hood}
 \end{figure}
 \end{frame}
 
+\begin{frame}
+\frametitle{\textsc{TransDetector}: 阶段3（在概念类别相关的词的时间序列上进行事件检测） (2/2)}
+因自适应社交媒体语境动态演变，\textsc{TransDetector}能够更精确检测事件。
+\begin{enumerate}
+	\item 检测事件候选词
+	\begin{itemize}
+		\item 例如, \textit{Ft.}, \textit{Hood}, \textit{attack}.
+	\end{itemize}
+	\item 生成事件词组
+	\begin{itemize}
+		\item 例如, \textit{Ft. Hood attack}.
+	\end{itemize}
+	\item 召回事件相关的社交媒体文本
+	\begin{itemize}
+		\item 例如, \textit{Possible Ft. Hood Attack Thwarted \url{http://t.co/BSJ33hk}}.
+	\end{itemize}
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{实验设置}
+\noindent 数据集
+\begin{itemize}
+	\item 知识库：英文维基百科\footnote{\url{https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-categorylinks.sql.gz}}\ \footnote{\url{https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2}}，文档3,212,435篇，概念类别
+	\item 社交媒体数据流：Edinburgh twitter corpus\footnote{\url{http://demeter.inf.ed.ac.uk/cross/docs/fsd_corpus.tar.gz}}
+\end{itemize} 
+对比方法
+\begin{itemize}
+	\item Twevent, BurstyBTM, LSH, EDCoW, and TimeUserLDA
+\end{itemize}
+Ground Truth
+\begin{itemize}
+	\item Benchmark1 is labeled events in previous study.
+	\item Benchmark2 is our manually checked events based on Twevent, BurstyBTM, LSH, EDCoW, TimeUserLDA and \textsc{TransDetector}.
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}
 \frametitle{实验结果：基于知识库结构的主题抽取质量}	
-
 \begin{table}[h]
 \setlength{\abovecaptionskip}{0.cm}%set the distance between caption and table to 0 cm.
 \setlength{\belowcaptionskip}{0.cm}
@@ -259,7 +295,7 @@ squadron & fly & cancer & body & syria & world & battle & attack & htc & apps\\
 \column{0.75\textwidth}
 
 \begin{enumerate}
-	\item 提出了一种以知识库结构为导向的概念类相关的主题抽取方法；
+	\item 提出了一种以知识库结构为导向的概念类相关主题抽取方法；
 	\item 提出了新的概率主题模型CTrans-LDA用于知识的迁移，并能自适应社交媒体的语境动态演变；
 	\item 在知识迁移后的时间序列上进行事件检测，准确地检测社交媒体中蕴含的事件；
 	\item Edinburgh Twitter Corpus数据集上准确率相较于目前已有的最佳方法提升了9\%
