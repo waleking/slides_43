@@ -92,7 +92,7 @@ We use Gibbs Sampling for solving CTrans-LDA.
 \end{frame}
 
 \begin{frame}
-\frametitle{\textsc{TransDetector}: 阶段3（在概念类别相关的词的时间序列上进行事件检测） (2/2)}
+\frametitle{\textsc{TransDetector}：阶段3（在概念类别相关的词的时间序列上进行事件检测） (2/2)}
 因自适应社交媒体语境动态演变，\textsc{TransDetector}能够更精确检测事件。
 \begin{enumerate}
 	\item 检测事件候选词
@@ -115,8 +115,8 @@ We use Gibbs Sampling for solving CTrans-LDA.
 \frametitle{实验设置}
 \noindent 数据集
 \begin{itemize}
-	\item 知识库：英文维基百科\footnote{\url{https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-categorylinks.sql.gz}}\ \footnote{\url{https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2}}，文档3,212,435篇，概念类别
-	\item 社交媒体数据流：Edinburgh twitter corpus\footnote{\url{http://demeter.inf.ed.ac.uk/cross/docs/fsd_corpus.tar.gz}}
+	\item 知识库：英文维基百科\footnote{\tiny{\url{https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-categorylinks.sql.gz}}}\ \footnote{\tiny{\url{https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2}}}，3,212,435篇维基页面，973,125个概念类别，\textsc{TransDetector}取$K_{\bm{KB}}=50$.
+	\item 社交媒体数据流：Edinburgh twitter corpus\footnote{\tiny{\url{http://demeter.inf.ed.ac.uk/cross/docs/fsd_corpus.tar.gz}}}
 \end{itemize} 
 对比方法
 \begin{itemize}
@@ -127,6 +127,49 @@ Ground Truth
 	\item Benchmark1 is labeled events in previous study.
 	\item Benchmark2 is our manually checked events based on Twevent, BurstyBTM, LSH, EDCoW, TimeUserLDA and \textsc{TransDetector}.
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{实验设置(2/2)}
+\noindent Ground Truth
+\begin{itemize}
+	\item Benchmark1 is labeled events in previous study.
+	\item Benchmark2 is our manually checked events based on Twevent, BurstyBTM, LSH, EDCoW, TimeUserLDA and \textsc{TransDetector}.
+\end{itemize}
+
+\intextsep=5pt plus 3pt minus 1pt % 调整表格与正文的上间距
+\begin{table}[]
+\setlength{\abovecaptionskip}{0.cm}%set the distance between caption and table to 0 cm.
+\setlength{\belowcaptionskip}{0.cm}
+\centering
+\caption{Statistics of labeled events.}
+\label{my-label}
+\scalebox{0.65}{
+\begin{tabular}{|l|l|r|}
+\hline
+Event                                        & Date       & Event Size \\ \hline
+S\&P downgrade US credit rating                  & 05/08/2011 & 656      \\ \hline
+Atlantis shuttle lands                           & 21/07/2011 & 595      \\ \hline
+US increases debt ceiling                        & 25/07/2011 & 485      \\ \hline
+Plane with Russian hocky team Lokomotiv crashes  & 07/09/2011 & 286      \\ \hline
+Amy Winehouse dies                               & 23/07/2011 & 283      \\ \hline
+Gunman opens fire in youth camp in Norway        & 23/07/2011 & 260      \\ \hline
+Earthquake in Virginia                           & 24/08/2011 & 246      \\ \hline
+First victim of London riots dies                & 09/08/2011 & 174      \\ \hline
+Explosion in French nuclear plant in Marcoule    & 12/09/2011 & 135      \\ \hline
+Google announces plans to bury Motorola Mobility & 15/08/2011 & 127      \\ \hline
+NASA announces there might be water on Mars      & 04/08/2011 & 124      \\ \hline
+Car bomb explodes in Oslo, Norway                & 22/07/2011 & 114      \\ \hline
+... & ... & ... \\ \hline
+\tikzmarkin<1>[hl]{bH1}Indian and Bangladesh sign a border pact         & 06/09/2011 & 25       \\ \hline
+Flight 4896 crash                                & 13/07/2011 & 21       \\ \hline
+First aritficial organ transplant                & 12/07/2011 & 18       \\ \hline
+three men die in riots in england                & 10/08/2011 & 16       \\ \hline
+rebels capture interational tripoli airport      & 21/08/2011 & 13       \tikzmarkend{bH1} \\ \hline
+\end{tabular}
+}
+\end{table}
+
 \end{frame}
 
 
