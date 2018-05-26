@@ -20,7 +20,7 @@
   \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.65ex,dp=1.5ex,center]{section in head/foot}%
     \usebeamerfont{section in head/foot}\thesection.\insertsectionhead\hspace*{2ex}
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,center]{subsection in head/foot}%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.65ex,dp=1.5ex,center]{subsection in head/foot}%
     \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
   \end{beamercolorbox}}%
   \vskip0pt%
@@ -176,6 +176,28 @@
 \renewcommand{\figurename}{图}
 \renewcommand{\tablename}{表}
 
+%===comment in pdf====================
+%writing mode
+\usepackage{pgfpages}
+\setbeameroption{second mode text on second screen=left}
+\setbeameroption{show notes on second screen}
+\setbeamertemplate{note page}{%
+  \insertnote%
+}
+\makeatletter 
+\def\beamer@framenotesbegin{% at beginning of slide
+    \usebeamercolor[fg]{normal text}
+    \gdef\beamer@noteitems{}% 
+    \gdef\beamer@notes{}% 
+}
+\makeatother
+\newcommand{\pdfnote}[1]{\note{#1}}
+
+
+%===used for pdfpc====================
+%\usepackage[draft]{pdfcomment}
+%\newcommand{\pdfnote}[1]{\marginnote{\pdfcomment[icon=note]{#1}}}
+
 
 %########################################
 %########################################
@@ -234,9 +256,9 @@
 
 %\include{chaps/chapIntro}
 %\include{chaps/chapK2Social}
-%\include{chaps/chapTmp_frame}
-\include{chaps/chapTransDetector}
-%\include{chaps/chapUMIETM}
+\include{chaps/chapTmp_frame}
+%\include{chaps/chapTransDetector}
+\include{chaps/chapUMIETM}
 %\include{chaps/chapTD+}
 %\include{chaps/chapConclusion}
 %\include{chaps/chapPublications}
