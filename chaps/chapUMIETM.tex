@@ -235,5 +235,80 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
 \begin{itemize}
 	\item （TODO）社交媒体数据流：Edinburgh twitter corpus\footnote{\tiny{\url{http://demeter.inf.ed.ac.uk/cross/docs/fsd_corpus.tar.gz}}}，36,627,434条微博，时间跨度为2011年6月30日到2011年9月15日。
 \end{itemize} 
-\pdfnote{这一页的实验说明检验模型的时效性}
+\pdfnote{这一页的实验说明检验模型的时效性\\ 是否要说是在MALLET上实现UMIETM算法，并在8核的2.00HZ，64GB内存的服务器上运行。}
 \end{frame}
+
+%------------------------------
+\begin{frame}
+\frametitle{实验结果：UMIETM模型有效性}	
+\begin{itemize}
+	\item 对比方法：Author-LDA, twitterLDA, timeUserLDA，以及不使用用户个人简档信息进行用户建模的变体方法IETM
+	\item 度量指标：困惑度（perplexity）
+\end{itemize}
+\begin{equation}
+\label{eq:UMIETM_perplexity}
+perplexity(D_{test})=\exp{\{-\frac{\sum_{u=1}^{U}\sum_{d=1}^{D_u}\log{p(w_{ud})}}{\sum_{u=1}^{U}\sum_{d=1}^{D_u}N_{ud}}\}}
+\end{equation}
+
+%\begin{equation}
+%\scriptsize
+%\begin{aligned}
+%\label{eq:UMIETM_p_w_ud}
+%&p(w_{ud})=(1-\pi_u)\sum_{k=1}^{K}\theta_{uk}\prod_{n=1}^{N_{ud}}(\phi_{s,w_{udn}}(1-\rho)+\phi_{k,w_{udn}}\rho)+\\
+%&\ \ \ \ \pi_u \sum_{k=1}^{K}\eta_{t,k}\prod_{n=1}^{N_{ud}}(\phi_{s,w_{udn}}(1-\rho)+\phi_{k,w_{udn}}\rho)
+%\end{aligned}
+%\end{equation}
+
+\begin{table}
+\centering
+\caption{UMIETM与对比方法的困惑度比较（数值较小者文本建模的有效性更强）}
+\begin{tabular}{|c|r|r|r|r|} \hline
+Author-LDA & TwitterLDA & TimeUserLDA & IETM & UMIETM\\ \hline
+20422.25 & 6027.47 &  4810.92 & 3926.76 & 3107.83\\ \hline
+\end{tabular}
+\label{tab:heldoutPerplexity}
+\end{table}
+\pdfnote{1，从表中可以看出IETM和UMIETM都比其他方法更优，说明区分用户兴趣与突发事件有助于提升文本建模效果；\\ 2，而UMIETM比IETM更优，说明通过用户个人简档和关注网络信息进行的建模比单纯建模社交媒体文本更优。}
+\end{frame}
+
+%------------------------------
+\begin{frame}
+\frametitle{实验结果：UMIETM算法收敛速度}
+\begin{figure}
+	\caption{UMIETM迭代10次之后，完全对数似然函数值的增长幅度小于0.15\%}
+    \includegraphics[width=1.0\textwidth]{img/UMIETM/completeLoglikelihood.pdf}
+\end{figure}
+
+\end{frame}
+
+
+%------------------------------
+\begin{frame}
+\frametitle{实验结果：UMIETM事件检测效率}
+\begin{figure}
+	\caption{UMIETM在线学习方法用于事件检测的运行效率}
+    \includegraphics[width=0.8\textwidth]{img/UMIETM/efficiencyCompareWithLSH.pdf}
+\end{figure}
+\pdfnote{timeUserLDA使用批量学习方法，时间复杂度随着数据集大小线性增长\\ 基于LSH的方法也具备在线学习能力，但时间复杂度不稳定，随着桶内数据大小而变化}
+\end{frame}
+
+%------------------------------
+\begin{frame}
+\frametitle{实验结果：突发事件检测准确率与召回率}
+
+\begin{table}
+\centering
+\caption{UMIETM与对比方法在新浪微博数据集（2012.1-2012.12）上突发事件检测任务的准确率与召回率比较}
+\begin{tabular}{|c|r|r|} \hline
+ & precision & recall \\ \hline
+UMIETM & 0.894 & 0.913\\ \hline
+UMIETM(-) & 0.847 & 0.697 \\ \hline
+IETM & 0.824 & 0.536 \\ \hline
+LSH & 0.394 & 0.913 \\ \hline
+EDCoW & 0.731 & 0.435 \\ \hline
+\end{tabular}
+\label{tab:metrics}
+\end{table}
+
+\end{frame}
+
