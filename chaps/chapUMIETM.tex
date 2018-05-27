@@ -66,7 +66,7 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
 
 \begin{columns}
 \begin{column}[T]{0.42\paperwidth}
-1. 根据用户个人简档信息以及关注网络计算用户兴趣分布：
+1. 根据用户个人描述信息以及关注网络计算用户兴趣分布：
 \setlength{\abovedisplayskip}{1pt}
 \setlength{\belowdisplayskip}{1pt}
 \begin{equation}
@@ -242,7 +242,7 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
 \begin{frame}
 \frametitle{实验结果：UMIETM模型有效性}	
 \begin{itemize}
-	\item 对比方法：Author-LDA, twitterLDA, timeUserLDA，以及不使用用户个人简档信息进行用户建模的变体方法IETM
+	\item 对比方法：Author-LDA, twitterLDA, timeUserLDA，以及不使用用户个人描述信息进行用户建模的变体方法IETM
 	\item 度量指标：困惑度（perplexity）
 \end{itemize}
 \begin{equation}
@@ -299,16 +299,81 @@ Author-LDA & TwitterLDA & TimeUserLDA & IETM & UMIETM\\ \hline
 \begin{table}
 \centering
 \caption{UMIETM与对比方法在新浪微博数据集（2012.1-2012.12）上突发事件检测任务的准确率与召回率比较}
-\begin{tabular}{|c|r|r|} \hline
- & precision & recall \\ \hline
-UMIETM & 0.894 & 0.913\\ \hline
-UMIETM(-) & 0.847 & 0.697 \\ \hline
-IETM & 0.824 & 0.536 \\ \hline
-LSH & 0.394 & 0.913 \\ \hline
-EDCoW & 0.731 & 0.435 \\ \hline
+\begin{tabular}{|c|c|c|c|} \hline
+ & precision & recall & F \\ \hline
+UMIETM & 0.894 & 0.913 & 0.903\\ \hline
+UMIETM(-) & 0.847 & 0.697 & 0.765\\ \hline
+IETM & 0.824 & 0.536 & 0.650\\ \hline
+LSH & 0.394 & 0.913 & 0.550\\ \hline
+EDCoW & 0.731 & 0.435 & 0.545\\ \hline
 \end{tabular}
 \label{tab:metrics}
 \end{table}
-
+\pdfnote{注意是否要增加一个Twevent的实验，或者我们要不要增加一个新的结果（最好是2016或者2017的）}
 \end{frame}
 
+%------------------------------
+\begin{frame}
+\frametitle{实验结果：社交媒体数据流中检测突发事件时效性}
+\vspace{-6mm}
+\begin{table}
+\setlength{\abovecaptionskip}{0.cm}
+\setlength{\belowcaptionskip}{0.cm}
+\centering
+\caption{\textit{Large twitter corpus}数据集中的突发事件}
+\label{my-label}
+\scalebox{0.50}{
+\begin{threeparttable}  
+\begin{tabular}{|c|l|c|c|c|}
+\hline
+\multirow{2}{*}{Date}  & \multirow{2}{*}{Representative event tweet} & \multicolumn{3}{c|}{Methods\tnote{a}} \\ \cline{3-5} 
+ &  & LSH  & TW & UMIETM \\ \hline
+9/17/11  & \begin{tabular}[c]{@{}l@{}l@{}} Day of \textbf{Rage} \textbf{occupies Wall Street} Democracy in Action!\\ Watching globalrevolution http://livestre.am/PlNN  via\\ @livestream \end{tabular} & 4:10PM & 3:50PM & 3:30PM \\ \hline
+ ... & ... & ... & ... & ... \\ \hline
+11/4/11  & \begin{tabular}[c]{@{}l@{}l@{}}Hotmail - mikehuot@msn.com - Windows Live\\ http://bit.ly/vRDssg  via @addthis \textbf{Andy Rooney}'s\\ Essay on Prayer! Gonna \textbf{miss} that old man! \end{tabular} & 11:20PM & 9:10PM & 7:30PM \\ \hline
+11/7/11 & \begin{tabular}[c]{@{}l@{}}\textbf{Jerry Sandusky} Accused Of \textbf{Sexually Assaulting} 8 \textbf{Boys}.. \end{tabular} & 4:50PM & 4:20PM & 4:00PM  \\ \hline
+11/8/11  & \begin{tabular}[c]{@{}l@{}l@{}} Here, I'm going to declare \textbf{Phil Bryant} a winner in the \\ Mississippi gubernatorial \textbf{race} right now. Take that, CNN. \end{tabular} & - & - & 1:40PM \\ \hline
+11/8/11 & \begin{tabular}[c]{@{}l@{}l@{}l@{}l@{}} Miss. \textbf{voters} asked if life begins at \textbf{conception}: JACKSON,\\ Miss. (AP) -- \textbf{Mississippi voters} were asked Tuesda... \\http://apne.ws/sjgCMh \end{tabular} & 10:00PM &  12:20PM & 11:50AM \\ \hline
+11/8/11 & \begin{tabular}[c]{@{}l@{}l@{}l@{}l@{}} Looks like \textbf{Steve Beshear} is going to easily win \textbf{reelection}! \end{tabular} & - & 4:50PM  & 3:50PM \\ \hline
+11/8/11 & \begin{tabular}[c]{@{}l@{}l@{}l@{}l@{}} Will \textbf{Republicans} seize control of the \textbf{Virginia state Senate}?\\ So far, our readers say yes. http://patch.com/A-n6G7  \\ What do you think? \#va31 \end{tabular} & - & 4:40PM  & 3:20PM \\ \hline
+11/8/11 & \begin{tabular}[c]{@{}l@{}l@{}l@{}l@{}} Is it the end of \textbf{Russell Pearce}'s future as state senator? \\ \textbf{Recall Vote} today. - http://bit.ly/tZHNMn \end{tabular} & - & 2:40PM  & 1:30PM \\ \hline
+... & ... & ... & ... & ... \\ \hline
+12/18/11 & \begin{tabular}[c]{@{}l@{}l@{}l@{}l@{}} The \textbf{iraq war} is \textbf{over}, but the war on Iran is just beginning \end{tabular} & 11:20AM & 9:50AM  & 9:30AM \\ \hline
+\end{tabular}
+
+\begin{tablenotes}  
+\item[a] LSH, TW=Twevent
+\end{tablenotes}  
+\end{threeparttable}  
+}
+\label{tbl:bursty_events_timeliness}
+\end{table}
+\footnote{以事件\textit{占领华尔街运动}为例，由新闻报道可知在2011年9月17日下午3点“占领华尔街运动”的抗议人群开始聚集在华尔街铜牛处。表显示UMIETM模型能够半个小时之后就检测到此突发事件。\\ 另一个例子是，2011年12月18日，美国从伊拉克撤出最后一批驻军，UMIETM能够在早上9点30分就检测到这一突发事件，而LSH方法则迟至中午11点20才检测到突发事件。}
+\end{frame}
+
+%------------------------------
+\begin{frame}
+\frametitle{实验结果：社交媒体数据流中检测突发事件时效性}	
+
+\pdfnote{43个突发事件平均提前1.4小时检测}
+\end{frame}
+
+%------------------------------
+\begin{frame}
+\frametitle{UMIETM方法小结}	
+\begin{columns}
+\column{0.75\textwidth}
+
+\begin{enumerate}
+	\item 提出了一种用户兴趣建模与知识迁移方法UMIETM，检测社交媒体突发事件；
+	\item 使用用户个人描述信息与关注网络，建模用户兴趣并迁移到社交媒体文本中，区分用户个人兴趣相关的文本和由外部突发事件引起的文本；
+	\item 将UMIETM扩展为在线学习的方式，应用于实际的社交媒体数据流；
+	\item 相较于已有方法能够提前1.4小时检测突发事件
+\end{enumerate}
+
+\column{0.25\textwidth}
+
+\end{columns}
+
+\pdfnote{1，本文提出了一种用户兴趣建模与知识迁移方法UMIETM，检测社交媒体突发事件。\\ 2，UMIETM使用用户个人描述信息与关注网络，学习出用户个人兴趣，并将用户个人兴趣的知识迁移到社交媒体数据流中，区分用户个人兴趣相关的文本和由外部突发事件引起的文本。\\ 3，将UMIETM扩展为在线学习的方式，应用于实际的社交媒体数据流。\\ 4，相较于已有方法能够提前1.4小时检测突发事件}
+\end{frame}
