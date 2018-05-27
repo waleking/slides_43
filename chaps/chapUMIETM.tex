@@ -63,11 +63,13 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
 \begin{frame}
 \frametitle{UMIETM知识迁移算法}
 
-\begin{columns}[t]
-\column{0.38\paperwidth}
-计算用户兴趣分布：
+\begin{columns}
+\begin{column}[T]{0.42\paperwidth}
+1. 根据用户个人简档信息以及关注网络计算用户兴趣分布：
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
 \begin{equation}
-\scriptsize
+\tiny
 \label{timeUserTagLDAIVsamplingForS}
 \begin{aligned}
 &p(s_{un}=k|s_{\neg{un}},\vec{p},\alpha,\beta)\\
@@ -76,7 +78,28 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
 \end{aligned}
 \end{equation}
 
-\column{0.46\paperwidth}
+2. 用户兴趣知识迁移至社交媒体文本内容中：
+\begin{itemize}
+	\item 和突发事件相关 
+\begin{align*}
+\tiny
+\begin{aligned}
+&p(y_{ud}=0,z_{ud}=k|\vec{y}_{\neg{ud}},\vec{z}_{\neg{ud}},\vec{t},\vec{w},\vec{s},\alpha,\beta,\gamma)\\
+\end{aligned}
+\end{align*}
+	\item 和用户兴趣相关
+\begin{align*}
+\tiny
+\begin{aligned}
+&p(y_{ud}=1,z_{ud}=e|\vec{y}_{\neg{ud}},\vec{z}_{\neg{ud}},\vec{t},\vec{w},\vec{s},\alpha,\beta,\gamma)\\
+\end{aligned}
+\end{align*}
+
+\end{itemize}
+
+\end{column}
+
+\begin{column}[T]{0.46\paperwidth}
 \scalebox{0.65}{
 \begin{minipage}{.7\paperwidth}
 \begin{algorithm}[H]
@@ -87,24 +110,24 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
     \DontPrintSemicolon
     initiate the topic label and the statistics \\
     \For {\(i=1:I_1\)}{
-        \For{\(u\) in  user set \(\mathcal{U}\)}{
-            \For{\(n\) = \(1:P_u\)}{
-                sample profile's hidden topic \(s_{un}\) by (\ref{timeUserTagLDAIVsamplingForS})\, update \(s_{un}\), \(c^{(p)}_{u,k}\) and \(c^{(p)}_{k,v}\)
-            }%end of n
-        }%end of u
+        	\For{\(u\) in  user set \(\mathcal{U}\)}{
+            		\For{\(n\) = \(1:P_u\)}{
+                		sample profile's hidden topic \(s_{un}\), update \(s_{un}\), \(c^{(p)}_{u,k}\) and \(c^{(p)}_{k,v}\)
+	            }%end of n
+    	    }%end of u
     }%end of i
     \For{iteration \(i=1:I_2\)}{
         \For{\(t=1:T\)}{
             \For{\(u\) in  user set \(U_t\)}{
                 \For{\(d\) = \(1: D_u\) }{
-                    sample \(y_{ud}\) and \(z_{ud}\) by (\ref{timeUserTagLDAIVJointSamplingForY0Z}), (\ref{timeUserTagLDAIVJointSamplingForY1Z})\\
+                    sample \(y_{ud}\) and \(z_{ud}\) \\
                     \If{\(y_{ud}=0\)}{
                         update \(z_{ud}\), \(y_{ud}\), \(c^{(0)}_u\), \(c^{(0)}_{u,k}\), \(c^{(0)}_{k,v}\)
                     }\Else{
                         update \(z_{ud}\), \(y_{ud}\), \(c^{(1)}_u\), \(c^{(1)}_{t,e}\), \(c^{(1)}_{t,e,v}\)
                     }
                     \For{\(n\) in \(1,\cdots,N_{ud}\)}{
-                        sample \(x_{udn}\) by (\ref{timeUserTagLDAIVsamplingX0}), (\ref{timeUserTagLDAIVsamplingX1})\\
+                        sample \(x_{udn}\)\\
                         \If{\(x_{udn}=0\)}{
                             update \(x_{udn}\), \(M^{\rho}_0\), \(c^{(B)}_v\)
                         }\Else{
@@ -119,7 +142,34 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
 \end{algorithm}
 \end{minipage}
 }
+\end{column}
 \end{columns}
+
+%The following code is VERY VERY UGLLY, since we have to use the HARD CODE to set the points
+%part 1 in algorithm
+\begin{tikzpicture}[remember picture,overlay]
+    \coordinate[xshift=63mm,yshift=-25.5mm] (A1) at (current page.north west);
+    \coordinate[xshift=123mm,yshift=-25.5mm] (A2) at (current page.north west);
+    \coordinate[xshift=123mm,yshift=-41mm] (A3) at (current page.north west);
+    \coordinate[xshift=63mm,yshift=-41mm] (A4) at (current page.north west);
+    \draw[fill=red, draw=red, opacity=0.2] (A1) -- (A2) -- (A3) -- (A4) -- (A1);
+    
+    \coordinate[xshift=53mm,yshift=-26mm] (s1) at (current page.north west);
+	\path[->] (s1) edge [out=0, in=-180] (A1);
+\end{tikzpicture}
+
+%part 2 in algorithm
+\begin{tikzpicture}[remember picture,overlay]
+    \coordinate[xshift=63mm,yshift=-43mm] (B1) at (current page.north west);
+    \coordinate[xshift=123mm,yshift=-43mm] (B2) at (current page.north west);
+    \coordinate[xshift=123mm,yshift=-89mm] (B3) at (current page.north west);
+    \coordinate[xshift=63mm,yshift=-89mm] (B4) at (current page.north west);
+    \coordinate[xshift=52mm,yshift=-25mm] (s1) at (current page.north west);
+    \draw[fill=blue, draw=blue, opacity=0.2] (B1) -- (B2) -- (B3) -- (B4) -- (B1);
+    
+    \coordinate[xshift=30mm,yshift=-50mm] (s2) at (current page.north west);
+    \path[->] (s2) edge [out=0, in=-180] (B1);
+\end{tikzpicture}
 \pdfnote{两阶段进行吉布斯采样}
 \end{frame}
 
