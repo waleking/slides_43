@@ -12,19 +12,20 @@
 
 \section{基于知识迁移的领域事件检测通用方法}
 %------------------------------
-%page 2
 \begin{frame}
 \frametitle{Motivation}
+领域事件检测为什么是必须的？
+\pdfnote{有什么合适的例子来说明领域事件检测呢？}
+\end{frame}
 
-Many Web applications need the \textbf{accurate event detection} technique on microblog stream, including:
-\begin{enumerate}
-	%\item 公共舆情分析 [Chen, SIGIR 2013]
-	%\item {\kaishu \textbf{公共安全}} [Li, ICDE 2012], [Imran, WWW 2014]
-	\item disaster response [Sakaki,WWW 2010]
-	\item breaking news report\footnote{\url{http://www.theverge.com/2016/12/1/13804542/reuters-algorithm-breaking-news-twitter}}
-\end{enumerate}	
-\vfill
+%------------------------------
+\begin{frame}
+\frametitle{TaxoPhrase}	
 
-But detecting events on twitter stream accurately is still challenging.
+\begin{figure}
+	\caption{TaxoPhrase用于从维基百科知识库中抽取领域知识的示意图}
+    \includegraphics[width=1.0\textwidth]{img/TD+/taxophrase_motivation.pdf}
+\end{figure}
+\pdfnote{TaxoPhrase用于从知识库中抽取领域知识的示意图。用户1关心\textit{数学}领域中除\textit{统计自然语言处理}（白色区域）之外的知识（深灰色区域），用户2关心\textit{语言学}领域中除\textit{统计自然语言处理}之外的知识（浅灰色区域），在此场景中TaxoPhrase可将上述三部分用主题建模的方法加以探索与抽取。}
 \end{frame}
 
