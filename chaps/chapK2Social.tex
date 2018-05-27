@@ -1,4 +1,3 @@
-%TODO 制作导航部分
 \begin{withoutheadline}
 \begin{frame}
 \vspace*{-13mm}
@@ -15,10 +14,35 @@
 %page 2
 \begin{frame}
 %\frametitle{Motivation}
-\vspace*{-2mm}
+\vspace*{-2.5mm}
 \begin{figure}
     \includegraphics[width=0.9\paperwidth]{img/K2Social_flow}
 \end{figure}
 
 \end{frame}
 
+
+\begin{frame}
+
+\begin{tikzpicture}[node distance=5mm]
+\tikzset{
+    every node/.style={draw, rectangle, align=center, text width=3cm, inner sep=0, thick, outer sep=0}
+}
+\footnotesize
+\node[fill=green!40, minimum height=4cm, minimum width=3cm, text width=2cm] (one) {基于知识库结构的主题抽取与迁移方法TransDetector};
+
+\node[fill=green!40, minimum height=4cm, minimum width=3cm, text width=2cm, right =of one.south east, anchor=south west] (two) {用户兴趣建模与知识迁移方法UMIETM};
+
+\node[fill=green!40, minimum height=4cm, minimum width=3cm, text width=2cm, right =of two.south east, anchor=south west] (three) {基于知识迁移的领域事件检测通用方法TransDetector$^+$};
+
+\node[fill=red!40, fit={(one.west) (three.east)}, minimum height=1cm, below =of two] (four) {基于知识迁移的社交媒体事件检测通用框架K2Social};
+
+\node[fill=green!40, fit={(one.west) (one.east)}, minimum height=1.5cm,  above= of one] (a) {提升事件检测准确性};
+
+\node[fill=green!40, fit={(one.west) (one.east)}, minimum height=1.5cm,  above= of two] (b) {提升突发事件检测时效性};
+
+\node[fill=green!40, fit={(one.west) (one.east)}, minimum height=1.5cm,  above= of three] (b) {提升领域事件检测准确性};
+
+\end{tikzpicture}
+	
+\end{frame}
