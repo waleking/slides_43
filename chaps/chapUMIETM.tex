@@ -220,6 +220,8 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
 %------------------------------
 \begin{frame}
 \frametitle{UMIETM对社交媒体动态语境演变的自适应}
+社交媒体的语境动态演变不断带来新词，新词也意味着新的事件，UMIETM需要相应自适应机制。
+
 \begin{figure}
 	\centering
 	\includegraphics[height=3.1cm]{img/UMIETM/stream2.pdf}
@@ -267,7 +269,14 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
 \frametitle{实验设置（2/2）}
 
 \begin{itemize}
-	\item （TODO）社交媒体数据流：Edinburgh twitter corpus\footnote{\tiny{\url{http://demeter.inf.ed.ac.uk/cross/docs/fsd_corpus.tar.gz}}}，36,627,434条微博，时间跨度为2011年6月30日到2011年9月15日。
+	\item 社交媒体数据流Large twitter corpus（相比于Edinburgh twitter corpus）：
+	\begin{itemize}
+		\item 61,2091,163条微博
+		\item 7,695,256个用户
+		\item 时间跨度：2011年7月1日到2011年12月18日。
+		\item 以10分钟为单位进行数据分片。
+	\end{itemize}
+	\item 突发事件基准：Wikipedia上用户整理的事件列表2011 in the United States\#Events\footnote{\url{https://en.wikipedia.org/wiki/2011_in_the_United_States\#Events}}，43个突发事件。
 \end{itemize} 
 \pdfnote{这一页的实验说明检验模型的时效性\\ 是否要说是在MALLET上实现UMIETM算法，并在8核的2.00HZ，64GB内存的服务器上运行。}
 \end{frame}
