@@ -177,20 +177,54 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
 
 %------------------------------
 \begin{frame}
-\frametitle{UMIETM模型的批量学习}
-这里放批量学习算法，可以参考之前的PPT
-\end{frame}
-
-%------------------------------
-\begin{frame}
 \frametitle{UMIETM模型在线学习，提升突发事件检测时效性}
-这里放在线学习算法，可以参考之前的PPT
+\vspace{-6mm}
+\begin{columns}
+\begin{column}{0.48\paperwidth}
+	\begin{figure}
+		\setlength{\abovecaptionskip}{0.cm}
+		\setlength{\belowcaptionskip}{0.cm}
+		\caption{UMIETM批量学习中遍历一轮}
+		\includegraphics[width=\textwidth]{img/UMIETM/batch_learning.pdf}
+	\end{figure}
+\end{column}
+
+\begin{column}{0.48\paperwidth}
+	\begin{figure}
+		\setlength{\abovecaptionskip}{0.cm}
+		\setlength{\belowcaptionskip}{0.cm}
+		\caption{UMIETM在线学习提升效率}
+		\includegraphics[width=\textwidth]{img/UMIETM/online_learning.pdf}
+	\end{figure}
+\end{column}	
+\end{columns}
+
+\vspace{-1mm}
+
+\begin{table}[ht]
+	\setlength{\abovecaptionskip}{0.cm}
+	\setlength{\belowcaptionskip}{0.cm}
+	\caption{UMIETM批量学习与在线学习时间复杂度与空间复杂度对比表，其中\(|W_t| \ll |W|\)}
+	\begin{tabular}{|l|c|c|}
+	\hline
+       & 时间复杂度 & 空间复杂度 \\ \hline
+	UMIETM批量学习方法  & \(O(I_1 K|P|+I_2 (K+E)|W|)\) & \(O(|P|+|W|)\) \\ \hline
+	UMIETM在线学习方法 & \(O(I_1 K|P|+I_2 (K+E)|W_t|)\) & \(O(|P|+|W_t|)\) \\
+	\hline
+	\end{tabular}
+\end{table}
+
+
 \end{frame}
 
 %------------------------------
 \begin{frame}
 \frametitle{UMIETM对社交媒体动态语境演变的自适应}
-这里放UMIETM模型学习新词的PPT
+\begin{figure}
+	\centering
+	\includegraphics[height=3.1cm]{img/UMIETM/stream2.pdf}
+	\caption{社交媒体数据流上新增的词汇采用smoothing的方式初始化}
+\end{figure}
 \end{frame}
 
 %------------------------------
@@ -352,11 +386,11 @@ EDCoW & 0.731 & 0.435 & 0.545\\ \hline
 \end{frame}
 
 %------------------------------
-\begin{frame}
-\frametitle{实验结果：社交媒体数据流中检测突发事件时效性}	
-
-\pdfnote{43个突发事件平均提前1.4小时检测}
-\end{frame}
+%\begin{frame}
+%\frametitle{实验结果：社交媒体数据流中检测突发事件时效性}	
+%
+%\pdfnote{43个突发事件平均提前1.4小时检测}
+%\end{frame}
 
 %------------------------------
 \begin{frame}
