@@ -207,20 +207,20 @@ squadron (306569), ..., german (107399), ... 括号中为卡方分数}
 \end{frame}
 
 
-%TODO CTrans-LDA
 \begin{frame}
-\frametitle{\textsc{TransDetector}: Phase 2 (Transferring Category-Level Info into Microblog Stream) (1/2)}	
-Transfer KB's Category-Level Topics \(\{\bm{h_c}\}_{c=1}^{K_{KB}}\) into microblogs stream: CTrans-LDA.
+\frametitle{\textsc{TransDetector}: 阶段2（从知识库到社交媒体的迁移学习）(1/3)}	
+将知识库中分类类别$c$对应的主题 \(\{\bm{h_c}\}_{c=1}^{K_{KB}}\)迁移到目标域，使用CTrans-LDA.
+\vspace{-3mm}
 \begin{figure}[h]
 		\setlength{\abovecaptionskip}{0.cm}
         \setlength{\belowcaptionskip}{0.cm}
         \centering
+ 		\caption{CTrans-LDA模型示意图}
         \includegraphics[width=0.6\columnwidth]{img/lda_tikz.pdf}
-        \caption{Diagram of CTrans-LDA.}
         \label{fig:hood}
 \end{figure}
 
-In CTrans-LDA, \(\{\bm{h_c}\}_{c=1}^{K_{KB}}\) is used as prior information:
+在CTrans-LDA中卡方分数\(\{\bm{h_c}\}_{c=1}^{K_{KB}}\)用作先验知识，$S_k$为和类别$k$相关的所有词的集合:
 \setlength{\abovedisplayskip}{0pt}
 \setlength{\belowdisplayskip}{0pt}
 \begin{scriptsize}
@@ -239,20 +239,37 @@ In CTrans-LDA, \(\{\bm{h_c}\}_{c=1}^{K_{KB}}\) is used as prior information:
 
 %TODO CTrans-LDA 2
 \begin{frame}
-\frametitle{\textsc{TransDetector}: Phase 2 (Transferring Category-Level Info into Microblog Stream) (2/2)}	
+\frametitle{\textsc{TransDetector}: 阶段2（从知识库到社交媒体的迁移学习）(2/3)}	
 
-这里需要放两幅图，一幅是对称先验，一幅是非对称先验，而且要用具体的例子。
+下图是对称先验先验VS非对称先验的例子。
+\(\bm{\phi_k} \sim Dir(\bm{\beta}+ \bm{\tau_k})\)中的\(\bm{\tau_k}\)作用非常明显的，例如\(\tau_{Military,army}/\tau_{Military,basketball}=203\)。
+\vspace{-5mm}
+\begin{columns}
+\begin{column}{0.48\paperwidth}
+	\begin{figure}
+		\caption{$(1.5,1.5,1.5)$}
+		\includegraphics[width=0.4\paperwidth]{img/croppedDirichletGraph2.pdf}	
+	\end{figure}
 
+\end{column}
+
+\begin{column}{0.48\paperwidth}
+	\begin{figure}
+		\caption{$(1.5,2.5,2.5)$}
+		\includegraphics[width=0.4\paperwidth]{img/croppedDirichletGraph10.pdf}	
+	\end{figure}	
+\end{column}	
+\end{columns}
 
 \end{frame}
 
 
 %TODO CTrans-LDA 3
 \begin{frame}
-\frametitle{\textsc{TransDetector}: Phase 2 (Transferring Category-Level Info into Microblog Stream) (2/2)}	
-We use Gibbs Sampling for solving CTrans-LDA.
+\frametitle{\textsc{TransDetector}: 阶段2（从知识库到社交媒体的迁移学习）(3/3)}	
+使用吉布斯采样求解CTrans-LDA：
 \begin{itemize}
-	\item The initialization probability \(\hat{q}_{k|v}\) makes sure that the learned topics are aligned to the pre-defined category-level topic.
+	\item 初始化概率\(\hat{q}_{k|v}\)使得社交媒体中的主题能够与知识库中的主题对齐.
 \setlength{\abovedisplayskip}{0pt}
 \setlength{\belowdisplayskip}{0pt}
 \begin{scriptsize} 
@@ -268,7 +285,7 @@ We use Gibbs Sampling for solving CTrans-LDA.
 \end{aligned}
 \end{equation}
 \end{scriptsize}
-\item Conditional probability in gibbs sampling:
+\item 吉布斯采样中的条件概率.
 \(p(z_{dn}=k|.)\propto (n^{(d)}_{dk}+\alpha m_k)(n^{(w)}_{kv}+\tau_{kv}+\beta)/(n^{(w)}_{k,.}+\tau_{k,.}+V\beta)\).
 \end{itemize}
 
@@ -433,7 +450,7 @@ GID& \#words*  & words  & NPMI & GID& \#words*& words & NPMI \\ \hline
 %------------------------------
 %page 2
 \begin{frame}
-\frametitle{实验结果：迁移学习效果}
+\frametitle{实验结果：迁移学习效果以及自适应社交媒体语境动态演变的效果}
 \begin{table}
 \setlength{\abovecaptionskip}{0.cm}%set the distance between caption and table to 0 cm.
 \setlength{\belowcaptionskip}{0.cm}
