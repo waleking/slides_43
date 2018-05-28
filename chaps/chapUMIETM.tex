@@ -13,13 +13,13 @@
 
 %------------------------------
 %TODO 要说明对突发事件检测有迫切需求
-\begin{frame}
-\frametitle{Motivation}	
-issue
-说明对突发事件检测有迫切需求
-
-\pdfnote{前面一节中已经分析了知识迁移对事件检测准确性的提升，这一小节中我们分析知识迁移对事件检测时效性的提升}
-\end{frame}
+%\begin{frame}
+%\frametitle{Motivation}	
+%issue
+%说明对突发事件检测有迫切需求
+%
+%\pdfnote{前面一节中已经分析了知识迁移对事件检测准确性的提升，这一小节中我们分析知识迁移对事件检测时效性的提升}
+%\end{frame}
 
 \begin{frame}
 \frametitle{突发事件的特点}
@@ -29,7 +29,7 @@ issue
 
 %------------------------------
 \begin{frame}
-\frametitle{Motivation}
+\frametitle{我们的观察}
 \begin{figure}[h]
 		\setlength{\abovecaptionskip}{0.cm}
         \setlength{\belowcaptionskip}{0.cm}
@@ -363,7 +363,7 @@ EDCoW & 0.731 & 0.435 & 0.545\\ \hline
 \setlength{\abovecaptionskip}{0.cm}
 \setlength{\belowcaptionskip}{0.cm}
 \centering
-\caption{\textit{Large twitter corpus}数据集中的突发事件}
+\caption{\textit{Large twitter corpus}数据集中的突发事件，UMIETM平均比TW提前1.4小时检测到}
 \label{my-label}
 \scalebox{0.50}{
 \begin{threeparttable}  
@@ -391,7 +391,11 @@ EDCoW & 0.731 & 0.435 & 0.545\\ \hline
 }
 \label{tbl:bursty_events_timeliness}
 \end{table}
-\footnote{以事件\textit{占领华尔街运动}为例，由新闻报道可知在2011年9月17日下午3点“占领华尔街运动”的抗议人群开始聚集在华尔街铜牛处。表显示UMIETM模型能够半个小时之后就检测到此突发事件。\\ 另一个例子是，2011年12月18日，美国从伊拉克撤出最后一批驻军，UMIETM能够在早上9点30分就检测到这一突发事件，而LSH方法则迟至中午11点20才检测到突发事件。}
+
+\begin{textblock*}{25mm}(93mm,75mm)
+\noindent \tiny{11个事件的规模小于50（事件对应的微博少于50条）}
+\end{textblock*}
+
 \end{frame}
 
 %------------------------------
