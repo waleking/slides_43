@@ -142,11 +142,70 @@
 \end{figure}
 \end{frame}
 
-%TODO 卡方分数
 \begin{frame}
 \frametitle{\textsc{TransDetector}: 阶段1 (基于知识库结构的主题抽取) (2/2)}	
-这里需要写卡方分数
+\begin{columns}
+\begin{column}{0.78\paperwidth}
+\onslide<1-4>{
+\footnotesize
+Military, Military\_terminology, Military\_terminology\_of\_Pakistan, Cold\_War\_terminology, Glossaries\_of\_the\_military, ...
+}
+
+\onslide<2-4>{
+{\color{red}$\Rightarrow$}
+
+{\footnotesize\color{red}Towarzysz\_pancerny, Derek\_Prince,No.\_21\_Squadron\_RAF,
+Benjamin\_Chew\_Tilghman,H.\_W.\_Gretton, ...}
+}
+
+\onslide<3-4>{
+{\color{blue}$\Rightarrow$}
+
+{\color{blue}army (183815), air (141047), military (123486), force (116122), battle (95039), forces (94469), command (79866), ship (79478), german(76323), ... 括号中为原始词频}
+}
+
+\onslide<4>{
+{\color{blue}$\Rightarrow$}
+
+{\color{blue}army (742848), military (394538), air (390291), command (389632), 
+force (366014), 
+regiment (364938), 
+forces (319349), 
+squadron (306569), ..., german (107399), ... 括号中为卡方分数}
+}
+\end{column}
+
+\begin{column}{0.2\paperwidth}
+\onslide<1-4>{
+%	\vspace{20mm}
+	{\color{black}\textit{分类类别}}
+}
+
+\onslide<2-4>{
+	\vspace{5mm}
+	{\color{red}\textit{实体对应的页面}}
+}
+
+\onslide<3-4>{
+	\vspace{5mm}
+	{\color{blue}\textit{原始主题}}
+}
+
+\onslide<4>{
+	\vspace{9mm}
+	{\color{blue}\textit{经卡方分数重计算之后的主题}}
+}
+
+\end{column}
+
+
+\end{columns}
+
+
+
+\pdfnote{german是一个常用词，在其他类别中也经常出现，所以卡方分数重计算之后在Military中的权重相应降低}
 \end{frame}
+
 
 %TODO CTrans-LDA
 \begin{frame}
@@ -482,10 +541,10 @@ squadron & fly & cancer & body & syria & world & battle & attack & htc & apps\\
 \end{frame}
 
 %TODO 在Reddit上的实验效果
-\begin{frame}
-\frametitle{实验结果：在更多的社交媒体数据上}	
-这里放Reddit的实验结果。
-\end{frame}
+%\begin{frame}
+%\frametitle{实验结果：在更多的社交媒体数据上}	
+%这里放Reddit的实验结果。
+%\end{frame}
 
 
 \begin{frame}
