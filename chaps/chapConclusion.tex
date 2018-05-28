@@ -1,4 +1,3 @@
-%TODO 制作导航部分
 \begin{withoutheadline}
 \begin{frame}
 \vspace*{-13mm}
@@ -12,19 +11,46 @@
 
 \section{总结与展望}
 %------------------------------
-%page 2
 \begin{frame}
-\frametitle{Motivation}
+\frametitle{总结}
+\begin{tikzpicture}[node distance=5mm]
+\tikzset{
+    every node/.style={draw, rectangle, align=center, text width=3cm, inner sep=0, thick, outer sep=0}
+}
+\footnotesize
+\node[fill=golden, minimum height=4cm, minimum width=3cm, text width=2cm] (one) {基于知识库结构的主题抽取与迁移方法TransDetector};
 
-Many Web applications need the \textbf{accurate event detection} technique on microblog stream, including:
-\begin{enumerate}
-	%\item 公共舆情分析 [Chen, SIGIR 2013]
-	%\item {\kaishu \textbf{公共安全}} [Li, ICDE 2012], [Imran, WWW 2014]
-	\item disaster response [Sakaki,WWW 2010]
-	\item breaking news report\footnote{\url{http://www.theverge.com/2016/12/1/13804542/reuters-algorithm-breaking-news-twitter}}
-\end{enumerate}	
-\vfill
+\node[fill=golden, minimum height=4cm, minimum width=3cm, text width=2cm, right =of one.south east, anchor=south west] (two) {用户兴趣建模与知识迁移方法UMIETM};
 
-But detecting events on twitter stream accurately is still challenging.
+\node[fill=golden, minimum height=4cm, minimum width=3cm, text width=2cm, right =of two.south east, anchor=south west] (three) {基于知识迁移的领域事件检测通用方法TransDetector$^+$};
+
+\node[fill=red!40, fit={(one.west) (three.east)}, minimum height=1cm, below =of two] (four) {基于知识迁移的社交媒体事件检测通用框架K2Social};
+
+\node[fill=grassgreen, text=white, fit={(one.west) (one.east)}, minimum height=1.6cm,  above= of one] (a) {提升事件检测准确性，实验中提升9\%};
+
+\node[fill=grassgreen, text=white, fit={(one.west) (one.east)}, minimum height=1.6cm,  above= of two] (b) {提升突发事件检测时效性，实验中提前1.4小时};
+
+\node[fill=grassgreen, text=white, fit={(one.west) (one.east)}, minimum height=1.6cm,  above= of three] (b) {提升领域事件检测准确性，实验中F值提升21\%};
+
+\end{tikzpicture}
+	
 \end{frame}
 
+
+%-----------------------------
+\begin{frame}
+\frametitle{未来工作展望}
+\begin{tikzpicture}[node distance=5mm]
+\tikzset{
+    every node/.style={draw, rectangle, align=center, text width=3cm, inner sep=0, thick, outer sep=0}
+}
+\footnotesize
+\node[fill=grassgreen, text=white, minimum width=10cm, minimum height=1.6cm, text width=10cm] (a) {更多与领域相关的社会计算任务：如心理危机干预，网络亚文化社区检测等};
+
+\node[fill=golden, minimum width=10cm, minimum height=1cm, text width=10cm, below =of a] (one) {扩展面向领域的知识迁移方法};
+
+\node[fill=red!40, minimum width=10cm, minimum height=1cm, text width=10cm, below =of one] (four) {扩展基于知识迁移的社交媒体事件检测通用框架K2Social};
+
+\end{tikzpicture}
+	
+\end{frame}
