@@ -7,9 +7,12 @@
 \usetheme{CambridgeUS}
 
 \definecolor{frenchblue}{HTML}{0071BB}
+\definecolor{grassgreen}{HTML}{62AD54}
+\definecolor{ligthgray}{HTML}{D9D9D9}
+\definecolor{golden}{HTML}{FFBB3A}
 
 %-ruler------------------------------------------------------
-\usepackage[texcoord,grid,gridunit=mm,gridcolor=red!10,subgridcolor=green!10]{eso-pic}
+%\usepackage[texcoord,grid,gridunit=mm,gridcolor=red!10,subgridcolor=green!10]{eso-pic}
 
 %-change headline in each page-------------------------------
 \setbeamercolor{palette tertiary}{fg=white, bg=frenchblue}
@@ -146,6 +149,10 @@
     set border color=red!80!black,
   },
 }
+%to set a tikz point
+\tikzstyle{na} = [baseline=-.5ex]
+%set tikz
+\usetikzlibrary{fit}
 %-----------------------------------------------
 
 %---set tikz marker-----------------------------
@@ -171,13 +178,12 @@
 
 %used for algorithm
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
-\usepackage{setspace} %save space in algorithm
 
 \renewcommand{\figurename}{图}
 \renewcommand{\tablename}{表}
 
 %===comment in pdf====================
-%writing mode
+%notes mode, comment this, we can use textblock
 \usepackage{pgfpages}
 \setbeameroption{second mode text on second screen=left}
 \setbeameroption{show notes on second screen}
@@ -193,10 +199,8 @@
 \makeatother
 \newcommand{\pdfnote}[1]{\note{#1}}
 
-
-%===used for pdfpc====================
-%\usepackage[draft]{pdfcomment}
-%\newcommand{\pdfnote}[1]{\marginnote{\pdfcomment[icon=note]{#1}}}
+%pure slides mode
+%\newcommand{\pdfnote}[1]{}
 
 
 %########################################
@@ -254,14 +258,14 @@
 \end{frame}
 
 
-%\include{chaps/chapIntro}
-%\include{chaps/chapK2Social}
-\include{chaps/chapTmp_frame}
-%\include{chaps/chapTransDetector}
+\include{chaps/chapIntro}
+\include{chaps/chapK2Social}
+%\include{chaps/chapTmp_frame}
+\include{chaps/chapTransDetector}
 \include{chaps/chapUMIETM}
-%\include{chaps/chapTD+}
-%\include{chaps/chapConclusion}
-%\include{chaps/chapPublications}
-%\include{chaps/chapAcknowledgements}
+\include{chaps/chapTD+}
+\include{chaps/chapConclusion}
+\include{chaps/chapPublications}
+\include{chaps/chapAcknowledgements}
 
 \end{document}

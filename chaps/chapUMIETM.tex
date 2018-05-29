@@ -21,11 +21,12 @@
 %\pdfnote{前面一节中已经分析了知识迁移对事件检测准确性的提升，这一小节中我们分析知识迁移对事件检测时效性的提升}
 %\end{frame}
 
-\begin{frame}
-\frametitle{突发事件的特点}
-这里放一幅插图，说明突发事件的特点是不同兴趣的用户在同一时间窗口内都关心的事件。
-\pdfnote{突发事件的特点是不同兴趣的用户在同一时间窗口内都关心的事件。}
-\end{frame}
+%TODO 突发事件的特点
+%\begin{frame}
+%\frametitle{突发事件的特点}
+%这里放一幅插图，说明突发事件的特点是不同兴趣的用户在同一时间窗口内都关心的事件。
+%\pdfnote{突发事件的特点是不同兴趣的用户在同一时间窗口内都关心的事件。}
+%\end{frame}
 
 %------------------------------
 \begin{frame}
@@ -104,7 +105,7 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
 \scalebox{0.65}{
 \begin{minipage}{.7\paperwidth}
 \begin{algorithm}[H]
-\begin{spacing}{0.8}
+%\begin{spacing}{0.8}
 	%\scriptsize
     \caption{UMIETM知识迁移算法} %title
     \label{alg:UMIETM_batch} %label
@@ -139,7 +140,7 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
             }%end of u
         }%end of t
     }%end of i
-\end{spacing}
+%\end{spacing}
 \end{algorithm}
 \end{minipage}
 }
@@ -184,7 +185,7 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
 	\begin{figure}
 		\setlength{\abovecaptionskip}{0.cm}
 		\setlength{\belowcaptionskip}{0.cm}
-		\caption{UMIETM批量学习中遍历一轮}
+		\caption{UMIETM批量学习}
 		\includegraphics[width=\textwidth]{img/UMIETM/batch_learning.pdf}
 	\end{figure}
 \end{column}
@@ -193,7 +194,7 @@ UMIETM模型(User Modeling Based Interest and Event Topic Modeling)
 	\begin{figure}
 		\setlength{\abovecaptionskip}{0.cm}
 		\setlength{\belowcaptionskip}{0.cm}
-		\caption{UMIETM在线学习提升效率}
+		\caption{UMIETM在线学习}
 		\includegraphics[width=\textwidth]{img/UMIETM/online_learning.pdf}
 	\end{figure}
 \end{column}	
@@ -392,9 +393,9 @@ EDCoW & 0.731 & 0.435 & 0.545\\ \hline
 \label{tbl:bursty_events_timeliness}
 \end{table}
 
-\begin{textblock*}{25mm}(93mm,75mm)
-\noindent \tiny{11个事件的规模小于50（事件对应的微博少于50条）}
-\end{textblock*}
+%\begin{textblock*}{25mm}(93mm,75mm)
+%\noindent \tiny{11个事件的规模小于50（事件对应的微博少于50条）}
+%\end{textblock*}
 
 \end{frame}
 

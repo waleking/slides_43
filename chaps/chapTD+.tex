@@ -11,15 +11,15 @@
 
 \section{基于知识迁移的领域事件检测通用方法}
 %------------------------------
-\begin{frame}
-\frametitle{Motivation}
-领域事件检测为什么是必须的？
-\pdfnote{有什么合适的例子来说明领域事件检测呢？}
-\end{frame}
+%\begin{frame}
+%\frametitle{Motivation}
+%领域事件检测为什么是必须的？
+%\pdfnote{有什么合适的例子来说明领域事件检测呢？}
+%\end{frame}
 
 %------------------------------
 \begin{frame}
-\frametitle{TaxoPhrase}	
+\frametitle{领域事件检测与知识抽取的优化}	
 
 \begin{figure}
 	\caption{TaxoPhrase用于从维基百科知识库中抽取领域知识的示意图}
@@ -30,7 +30,7 @@
 
 %------------------------------
 \begin{frame}
-\frametitle{TaxoPhrase}	
+\frametitle{领域事件检测与知识抽取的优化}	
 \begin{figure}
 	\caption{英文维基百科的分类体系中各类别节点的出度的分布}
     \includegraphics[width=1.0\textwidth]{img/TD+/outdegree_distribution.pdf}
@@ -39,7 +39,7 @@
 
 %------------------------------
 \begin{frame}
-\frametitle{TaxoPhrase}	
+\frametitle{领域事件检测与知识抽取的优化}	
 \vspace{-5mm}
 \begin{figure}
 	\setlength{\abovecaptionskip}{0.cm}
@@ -52,7 +52,7 @@
 
 %------------------------------
 \begin{frame}
-\frametitle{TaxoPhrase}
+\frametitle{TaxoPhrase模型}
 \begin{figure}
 	\centering
 	\caption{用于探索知识库中领域知识的概率模型TaxoPhrase的示意图}
@@ -65,6 +65,59 @@
 %------------------------------
 \begin{frame}
 \frametitle{实验结果：TaxoPhrase的建模质量}	
+%\begin{table}
+%\centering
+%\caption{TaxoPhrase方法在Mathematics@Wiki上学得的主题（取规模较大的5个进行展示，\(K\)=100）。\textit{斜体部分}表示分类类别，\texttt{黑体部分}表示实体，普通字体表示短语。五个主题分别对应了数学家与数学奖项，几何学，拓扑学，密码学，代数学。}
+%\label{my-label}
+%\begin{tabular}{|>{\columncolor[gray]{0.8}}c|c|}
+%\hline
+%Topic 1 &  \\
+%\multicolumn{2}{|p{15.2cm}|}{(Categories) \textit{Mathematics\_awards}, \textit{Mathematicians\_by\_award}, \textit{Mathematicians\_by\_nationality}, \textit{Mathematicians\_by\_field}}\\
+%%\hdashline
+%\multicolumn{2}{|p{15.2cm}|}{(Entities) \texttt{John Cedric Griffiths Teaching Award}, \texttt{Santosh Vempala}, \texttt{Aisenstadt Prize}, \texttt{Subhash Suri}, \texttt{David P. Dobkin}}\\
+%%\hdashline
+%\multicolumn{2}{|p{15.2cm}|}{(Phrases) university of california, american mathematical society, professor of mathematics, princeton university, computer science, harvard university, american mathematician, stanford university, massachusetts institute of technology, columbia university}\\
+%\hline
+%\hline
+%Topic 2 &  \\
+%\multicolumn{2}{|p{15.2cm}|}{(Categories) \textit{Geometry\_stubs}, \textit{Differential\_geometry\_stubs}, \textit{Elementary\_geometry\_stubs}, \textit{Polyhedron\_stubs}}\\
+%%%\hdashline
+%\multicolumn{2}{|p{15.2cm}|}{(Entities) \texttt{Enneadecahedron}, \texttt{Icosahedral pyramid}, \texttt{Expanded icosidodecahedron}, \texttt{Pentadecahedron}, \texttt{Cubic cupola}}\\
+%%\hdashline
+%\multicolumn{2}{|p{15.2cm}|}{(Phrases) three dimensional, platonic solids, johnson solids, uniform polyhedron compound, symmetry group, regular dodecahedron, triangular faces, vertex figure, nonconvex uniform polyhedron, four dimensional}\\
+%\hline
+%\hline
+%Topic 3 &  \\
+%\multicolumn{2}{|p{15.2cm}|}{(Categories) \textit{Topology\_stubs}, \textit{Knot\_theory\_stubs}, \textit{Theorems\_in\_topology}, \textit{Theorems\_in\_algebraic\_topology}}\\
+%%\hdashline
+%\multicolumn{2}{|p{15.2cm}|}{(Entities) \texttt{Knot operation}, \texttt{Chromatic homotopy theory}, \texttt{Infinite loop space machine}, \texttt{Simple space}, \texttt{Base change map}}\\
+%%\hdashline
+%\multicolumn{2}{|p{15.2cm}|}{(Phrases) topological space, algebraic topology, category theory, topological spaces, fundamental group, simply connected, homotopy theory, 3 manifold, 3 manifolds, knot theory}\\
+%\hline
+%\hline
+%Topic 4 &  \\
+%\multicolumn{2}{|p{15.2cm}|}{(Categories) \textit{Cryptography\_stubs}, \textit{Cryptography}, \textit{Combinatorics\_stubs}, \textit{Number\_stubs}}\\
+%%\hdashline
+%\multicolumn{2}{|p{15.2cm}|}{(Entities) \texttt{PC1 cipher}, \texttt{PKCS 8}, \texttt{KR advantage}, \texttt{Ccrypt}, \texttt{BEAR and LION ciphers}}\\
+%%\hdashline
+%\multicolumn{2}{|p{15.2cm}|}{(Phrases) dual ec drbg, block cipher, sha 1, public key, hash function, stream cipher, escape wheel, balance wheel, secret key, private key}\\
+%\hline
+%\hline
+%Topic 5 & \\
+%\multicolumn{2}{|p{15.2cm}|}{(Categories) \textit{Algebra\_stubs}, \textit{Abstract\_algebra\_stubs}, \textit{Linear\_algebra\_stubs}, \textit{Theorems\_in\_algebra}} \\
+%\multicolumn{2}{|p{15.2cm}|}{(Entities) \texttt{C-closed subgroup}, \texttt{Torsion abelian group}, \texttt{Fixed-point subgroup}, \texttt{Change of rings}, \texttt{Acceptable ring}}\\
+%\multicolumn{2}{|p{15.2cm}|}{(Phrases) algebraic geometry, group theory, abstract algebra, finite group, finitely generated, abelian group, finite groups, galois group, commutative ring, normal subgroup}\\
+%\hline
+%\end{tabular}
+%\label{tbl:taxophrase_topics}
+%\end{table}
+
+\vspace{-7mm}
+\begin{figure}
+	\centering
+	\caption{TaxoPhrase方法在Mathematics@Wiki上学得的主题}
+    \includegraphics[width=0.8\columnwidth]{img/TD+/topics1.png}
+\end{figure}
 
 \pdfnote{加TaxoPhrase在Maths上的建模结果}
 \end{frame}
@@ -106,6 +159,12 @@
 %------------------------------
 \begin{frame}
 \frametitle{实验结果：TaxoPhrase抽取领域知识的实例}
+\vspace{-7mm}
+\begin{figure}
+	\centering
+	\caption{TaxoPhrase方法在Feminism@Wiki上学得的主题}
+    \includegraphics[width=0.8\columnwidth]{img/TD+/topics2.png}
+\end{figure}
 \pdfnote{加TaxoPhrase在Feminism上的建模结果}
 \end{frame}
 
@@ -117,7 +176,7 @@
 \centering
 \setlength{\abovecaptionskip}{0.cm}
 \setlength{\belowcaptionskip}{0.cm}
-\caption{2011年6月30日至2011日9月15日，\textit{Edinburgh twitter corpus}数据集中Feminist（女权主义）相关事件列表及各事件检测方法在各事件上的具体表现}
+\caption{2011年6月30日至2011年9月15日，\textit{Edinburgh twitter corpus}数据集中Feminist（女权主义）相关事件列表及各事件检测方法在各事件上的具体表现}
 \label{my-label}
 \scalebox{0.65}{
 \begin{threeparttable}  
