@@ -29,19 +29,19 @@
     every node/.style={draw, rectangle, align=center, text width=3cm, inner sep=0, thick, outer sep=0}
 }
 \footnotesize
-\node[fill=golden, minimum height=4cm, minimum width=3cm, text width=2cm] (one) {基于知识库结构的主题抽取与迁移方法TransDetector};
+\node[fill=golden, minimum height=4cm, minimum width=3cm, text width=2cm] (one) {基于知识库结构的主题抽取与迁移方法TransDetector (DASFAA 2017)};
 
-\node[fill=golden, minimum height=4cm, minimum width=3cm, text width=2cm, right =of one.south east, anchor=south west] (two) {用户兴趣建模与知识迁移方法UMIETM};
+\node[fill=golden, minimum height=4cm, minimum width=3cm, text width=2cm, right =of one.south east, anchor=south west] (two) {用户兴趣建模与知识迁移方法UMIETM (APWeb 2016)};
 
-\node[fill=golden, minimum height=4cm, minimum width=3cm, text width=2cm, right =of two.south east, anchor=south west] (three) {基于知识迁移的领域事件检测通用方法TransDetector$^+$};
+\node[fill=golden, minimum height=4cm, minimum width=3cm, text width=2cm, right =of two.south east, anchor=south west] (three) {基于知识迁移的领域事件检测通用方法TransDetector$^+$ (SIGIR 2017 Workshop, ACL 2018)};
 
-\node[fill=red!40, fit={(one.west) (three.east)}, minimum height=1cm, below =of two] (four) {基于知识迁移的社交媒体事件检测通用框架K2Social};
+\node[fill=red!40, fit={(one.west) (three.east)}, minimum height=1cm, above =of two] (four) {基于知识迁移的社交媒体事件检测通用框架K2Social};
 
-\node[fill=grassgreen, text=white, fit={(one.west) (one.east)}, minimum height=1.5cm,  above= of one] (a) {提升事件检测准确性};
+\node[fill=grassgreen, text=white, fit={(one.west) (one.east)}, minimum height=1.5cm,  below= of one] (a) {提升事件检测准确性};
 
-\node[fill=grassgreen, text=white, fit={(one.west) (one.east)}, minimum height=1.5cm,  above= of two] (b) {提升突发事件检测时效性};
+\node[fill=grassgreen, text=white, fit={(one.west) (one.east)}, minimum height=1.5cm,  below= of two] (b) {提升突发事件检测时效性};
 
-\node[fill=grassgreen, text=white, fit={(one.west) (one.east)}, minimum height=1.5cm,  above= of three] (b) {提升领域事件检测准确性};
+\node[fill=grassgreen, text=white, fit={(one.west) (one.east)}, minimum height=1.5cm,  below= of three] (b) {提升领域事件检测准确性};
 
 \end{tikzpicture}
 	

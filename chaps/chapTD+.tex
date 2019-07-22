@@ -19,8 +19,16 @@
 
 %------------------------------
 \begin{frame}
-\frametitle{领域事件检测与知识抽取的优化}	
+\frametitle{\noindent 领域事件检测与知识抽取的优化}	
+领域事件检测的难点：
+\begin{enumerate}
+	\item 分类器+事件检测[Yang, KDD 2014] —— 需要构建较大的训练数据集，无法快速应用于不同的领域
+	\item 事件检测+人工筛选 —— 无法保证召回率
+\end{enumerate}
 
+\color{blue}我们的方法：提出概率模型TaxoPhrase优化从知识库中抽取领域知识的过程，TransDector$^+$将抽取出的领域知识迁移至社交媒体数据流中，检测领域事件。
+
+\vspace{-5mm}
 \begin{figure}
 	\caption{TaxoPhrase用于从维基百科知识库中抽取领域知识的示意图}
     \includegraphics[width=1.0\textwidth]{img/TD+/taxophrase_motivation.pdf}
@@ -30,7 +38,9 @@
 
 %------------------------------
 \begin{frame}
-\frametitle{领域事件检测与知识抽取的优化}	
+\frametitle{\noindent 领域事件检测与知识抽取的优化}	
+已有方法从知识库中抽取所需领域知识面临的困难：分类结点的幂律分布
+\vspace{-0.5cm}
 \begin{figure}
 	\caption{英文维基百科的分类体系中各类别节点的出度的分布}
     \includegraphics[width=1.0\textwidth]{img/TD+/outdegree_distribution.pdf}
@@ -39,12 +49,12 @@
 
 %------------------------------
 \begin{frame}
-\frametitle{领域事件检测与知识抽取的优化}	
+\frametitle{\noindent 领域事件检测与知识抽取的优化}	
 \vspace{-5mm}
 \begin{figure}
 	\setlength{\abovecaptionskip}{0.cm}
 	\setlength{\belowcaptionskip}{0.cm}
-	\caption{知识库中有互补关系的三部分的示例}
+	\caption{知识库中有共现关系的三部分的示例}
     \includegraphics[width=0.75\textwidth]{img/TD+/example.pdf}
 \end{figure}
 \pdfnote{可以考虑给图的左侧加上分类类别、实体、短语的标注}
@@ -52,7 +62,9 @@
 
 %------------------------------
 \begin{frame}
-\frametitle{TaxoPhrase模型}
+\frametitle{\noindent TaxoPhrase模型}
+TaxoPhrase模型：利用分类节点在分类体系中的相邻关系，短语和分类节点的共现关系，在马尔可夫随机场中建模分类节点的主题和短语主题。
+\vspace{-0.5cm}
 \begin{figure}
 	\centering
 	\caption{用于探索知识库中领域知识的概率模型TaxoPhrase的示意图}
@@ -61,10 +73,39 @@
 \end{figure}
 \end{frame}
 
+\begin{frame}
+\frametitle{\noindent 基于TaxoPhrase模型的知识抽取}
+\vspace{-0.5cm}
+\begin{itemize}
+	\item 根据短语主题\(\phi_k\), 分类类别主题\(\phi_k^{(\tau)}\)抽取用户关心的主题。
+	\item （可选）用短语主题之间的关联关系协助抽取关心的主题。
+\vspace{-0.5cm}
+\begin{figure}
+	\centering
+	\caption{用短语主题之间关联关系探索知识库中领域知识}
+    \includegraphics[width=0.75\columnwidth]{img/TD+/PhraseCTM_result}
+	\label{fig:IllustrationTaxoPhrase}
+\end{figure}
+
+	\item 将关心的主题的集合记为\(\mathcal{L}\)，合并后提供给TransDetector$^+$用于知识迁移。
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{\noindent 实验设置}
+\noindent 数据集
+\begin{itemize}
+	\item 知识库：英文维基百科\footnote{\tiny{\url{https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-categorylinks.sql.gz}}}\ \footnote{\tiny{\url{https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2}}}，以及7个类别：Mathematics, Chemistry, Argentina, Natural\_Hazards, Feminism, Public\_Safety, Transport\_disasters. (前3个用于检验TaxoPhrase模型的有效性，后4个类别用于检验TransDetector$^+$检测领域事件的有效性。）
+	\item 社交媒体数据流：Edinburgh twitter corpus\footnote{\tiny{\url{http://demeter.inf.ed.ac.uk/cross/docs/fsd_corpus.tar.gz}}}，36,627,434条微博，时间跨度为2011年6月30日到2011年9月15日。
+\end{itemize} 
+\end{frame}
 
 %------------------------------
 \begin{frame}
-\frametitle{实验结果：TaxoPhrase的建模质量}	
+\frametitle{\noindent 实验结果：TaxoPhrase的建模质量}	
 %\begin{table}
 %\centering
 %\caption{TaxoPhrase方法在Mathematics@Wiki上学得的主题（取规模较大的5个进行展示，\(K\)=100）。\textit{斜体部分}表示分类类别，\texttt{黑体部分}表示实体，普通字体表示短语。五个主题分别对应了数学家与数学奖项，几何学，拓扑学，密码学，代数学。}
@@ -116,16 +157,17 @@
 \begin{figure}
 	\centering
 	\caption{TaxoPhrase方法在Mathematics@Wiki上学得的主题}
-    \includegraphics[width=0.8\columnwidth]{img/TD+/topics1.png}
+    \includegraphics[width=0.6\columnwidth]{img/TD+/maths.pdf}
 \end{figure}
 
 \pdfnote{加TaxoPhrase在Maths上的建模结果}
 \end{frame}
 
 
+
 %------------------------------
 \begin{frame}
-\frametitle{实验结果：TaxoPhrase的建模质量}	
+\frametitle{\noindent 实验结果：TaxoPhrase的建模质量}	
 
 \begin{table}[]
 \centering
@@ -157,21 +199,20 @@
 
 
 %------------------------------
-\begin{frame}
-\frametitle{实验结果：TaxoPhrase抽取领域知识的实例}
-\vspace{-7mm}
-\begin{figure}
-	\centering
-	\caption{TaxoPhrase方法在Feminism@Wiki上学得的主题}
-    \includegraphics[width=0.8\columnwidth]{img/TD+/topics2.png}
-\end{figure}
-\pdfnote{加TaxoPhrase在Feminism上的建模结果}
-\end{frame}
-
+%\begin{frame}
+%\frametitle{\noindent 实验结果：TaxoPhrase抽取领域知识的实例}
+%\vspace{-7mm}
+%\begin{figure}
+%	\centering
+%	\caption{TaxoPhrase方法在Feminism@Wiki上学得的主题}
+%    \includegraphics[width=0.4\columnwidth]{img/TD+/feminism_topic.pdf}
+%\end{figure}
+%\pdfnote{加TaxoPhrase在Feminism上的建模结果}
+%\end{frame}
 
 %------------------------------
 \begin{frame}
-\frametitle{实验结果：TransDetector$^+$领域事件检测}
+\frametitle{\noindent 实验结果：TransDetector$^+$领域事件检测}
 \begin{table}
 \centering
 \setlength{\abovecaptionskip}{0.cm}
@@ -201,7 +242,7 @@
 
 %------------------------------
 \begin{frame}
-\frametitle{实验结果：TransDetector$^+$领域事件检测}
+\frametitle{\noindent 实验结果：TransDetector$^+$领域事件检测}
 \vspace{-7mm}
 \begin{table}[!htbp]
 \centering
@@ -209,7 +250,7 @@
 \setlength{\belowcaptionskip}{1.mm}
 \caption{\textit{Edinburgh twitter corpus}数据集中Natural Hazards（自然灾害）相关事件}
 \label{my-label}
-\scalebox{0.53}{
+\scalebox{0.48}{
 \begin{threeparttable}  
 \begin{tabular}{|c|l|c|c|c|c|c|c|c|}
 \hline
@@ -233,11 +274,16 @@ Virginia \textbf{Earthquake} 2011: Philadelphia\\ Eagles Feel Quake In Locker Ro
 }
 \label{tbl:natural_hazards_event_list}
 \end{table}
+
+\begin{textblock*}{25mm}(110mm,75mm)
+\noindent \tiny{$\bar{F}_{TransDetector^{+}}$ \\ $=0.82$ \\ $\bar{F}_{Twevent}$ \\ $=0.61$}
+\end{textblock*}
+
 \end{frame}
 
 %------------------------------
 \begin{frame}
-\frametitle{TransDetector$^+$方法小结}
+\frametitle{\noindent TransDetector$^+$方法小结}
 
 \begin{columns}
 \column{0.75\textwidth}

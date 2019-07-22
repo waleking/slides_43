@@ -10,19 +10,19 @@
 
 \section{引言}
 %------------------------------
-\begin{frame}
-\frametitle{社交媒体事件检测问题的背景}
-
-\begin{figure}
-    \includegraphics[width=0.75\paperwidth]{img/logos.pdf}
-\end{figure}
-
-\end{frame}
+%\begin{frame}
+%\frametitle{社交媒体事件检测问题的背景}
+%
+%\begin{figure}
+%    \includegraphics[width=0.75\paperwidth]{img/logos.pdf}
+%\end{figure}
+%
+%\end{frame}
 
 
 %------------------------------
 \begin{frame}
-\frametitle{社交媒体事件检测问题的背景}
+\frametitle{\noindent 社交媒体事件检测问题的背景}
 社交媒体上进行事件检测可服务于众多应用：
 \begin{figure}
     \includegraphics[width=0.75\paperwidth]{img/event_applications.pdf}
@@ -30,43 +30,68 @@
 
 \end{frame}
 
+\begin{frame}
+\frametitle{\noindent 社交媒体事件检测问题的背景}	
+科研项目背景：
+\begin{enumerate}
+	\item 非结构化数据管理系统北大部分——国家“核高基”重大专项(2010ZX01042-002-002-02)
+	\item 海量Web数据结构化内容提取与集成及大型示范应用——国家863计划课题(2012AA011002)
+	\item 微博用户社区及主题时序方法研究——中国信息安全测评中心合作项目
+\end{enumerate}
+\end{frame}
+
+
 %------------------------------
 \begin{frame}
-\frametitle{社交媒体的语境动态演变及带来的挑战}
-\onslide<1-4>{
+\frametitle{\noindent 社交媒体的语境动态演变及带来的挑战}
+%\onslide<1-4>{
 \begin{tcolorbox}[colback=red!5,colframe=red!75!black]
 社交媒体用语不规范，主题动态变化，我们将其总结为社交媒体的语境动态演变
 \end{tcolorbox}
-}
+%}
 
 \vspace{-5mm}
 
 \begin{columns}[onlytextwidth, t]
 \column{0.32\linewidth}
-	\onslide<2-4>{
+%	\onslide<2-4>{
     \begin{tcolorbox}[colback=red!5,colframe=red!5]
     交流语境的变化：从正式交流语境到非正式交流语境的转变，导致用语不规范[Gunraj 2016].
     \end{tcolorbox}
-    }
+%    }
 
 \column{0.32\linewidth}
-	\onslide<3-4>{
+%	\onslide<3-4>{
     \begin{tcolorbox}[colback=red!5,colframe=red!5]
     外部语境的变化：用户易于被外界影响[Weng 2012]，热门话题随着时间快速变化。
     \end{tcolorbox}
-    }
+%    }
     
 \column{0.32\linewidth}
-	\onslide<4>{
+%	\onslide<4>{
     \begin{tcolorbox}[colback=red!5,colframe=red!5]
     前述两种变化的综合叠加，例子：Somehow made it through Irene. 仅在2011.8的语境中知道这是关于飓风艾琳。 
     \end{tcolorbox}
-    }
+%    }
 \end{columns}
 
 %\begin{tcolorbox}[colback=red!5,colframe=red!75!black]
 %外在表现：用语不规范，主题动态变化
 %\end{tcolorbox}
+\end{frame}
+
+\begin{frame}
+\frametitle{\noindent 相关研究状况}
+
+    \begin{tcolorbox}[colback=red!5,colframe=red!5]
+传统媒体中事件的定义[Allan, 2002]：在特定的时间，特定的地点发生的特定的事，以及其附属的前提条件和后续结果，称作事件。\\
+社交媒体中事件的定义[Becker, 2011]：仅当上述定义中的事件被社交媒体报道了才能被定义为社交媒体上的事件。    \end{tcolorbox}
+
+\centering{\color{blue}$\Downarrow$} 形式化定义
+
+    \begin{tcolorbox}[colback=red!5,colframe=red!5]
+    社交媒体上的事件\(e\)由社交媒体数据流\(D_e=(d_{e,1}, d_{e,2}, \) \(\cdots, d_{e,m})\)确定：在时间窗口\([t_{e,1}, t_{e,m}]\) 上，\(D_e\)的文本集合\(w_{e,1}, \cdots ,w_{e,m}\)确定出的{\color{red}特征项}的频率明显高于时刻\(t_{e,1}\)之前该特征项频率的期望值，且\(D_e\)能够对应于现实中在特定时间已发生的特定的事。
+	\end{tcolorbox}
 
 
 \end{frame}
@@ -74,8 +99,8 @@
 
 %------------------------------
 \begin{frame}
-\frametitle{社交媒体的语境动态演变及带来的挑战}
-
+\frametitle{\noindent 相关研究状况}
+\vspace{-1cm}
 \begin{table}[]
 \centering
 \caption{社交媒体事件检测已有方法}
@@ -86,7 +111,7 @@
 基于普通聚类的方法 & {[}Chen, SIGIR 2013{]} & 高频的相似微博 & 实现简单 &  \\ \cline{1-4}
 基于敏感哈希的方法 & {[}Petrovic, NAACL 2010{]} & 高频的相似微博 & 响应速度快 &  \\ \cline{1-4}
 基于词频统计的方法 & {[}HE,SIGIR 2007{]} & 高频词组 & \begin{tabular}[c]{@{}l@{}}可区分周期性、\\ 非周期性事件\end{tabular} &  \\ \cline{1-4}
-基于主题模型的方法 & {[}Yan, AAAI 2015{]} & 主题 & 可利用上下文信息 &  \\ \cline{1-4}
+基于主题模型的方法 & \begin{tabular}[c]{@{}l@{}}{[}Yan, AAAI 2015{]}\\ {[}Jahnichen, AISTATS 2018{]}\end{tabular} & 主题 & 可利用上下文信息 &  \\ \cline{1-4}
 基于分类器+后处理 & {[}Yang, KDD 2014{]} & \begin{tabular}[c]{@{}l@{}}对微博分类后，\\ 再检测事件\end{tabular} & 进行领域事件检测 &  \\ \cline{1-4}
 \end{tabular}
 }

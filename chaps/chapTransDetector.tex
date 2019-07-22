@@ -78,7 +78,7 @@
 %\end{frame}
 
 \begin{frame}
-\frametitle{我们的观察：知识迁移与事件检测实例}	
+\frametitle{\noindent 我们的观察：知识迁移与事件检测实例}	
 %\noindent 在迁移学习之后的时间序列上，事件检测更易于进行
 \begin{figure}[h]
 		\setlength{\abovecaptionskip}{0.cm}
@@ -102,8 +102,36 @@
 \end{figure}
 \end{frame}
 
+%\begin{frame}
+%\frametitle{\noindent 将知识库直接应用于事件检测的难点}
+%\begin{enumerate}
+%	\item 
+%	\item 
+%	\item 
+%\end{enumerate}
+%\end{frame}
+
 \begin{frame}
-\frametitle{我们的方法}
+\frametitle{\noindent 知识库直接应用于事件检测时存在的难点}	
+\begin{itemize}
+	\item 直接在Probase，DBPedia, Yago, Freebase等知识库上进行查询，对于事件检测任务而言代价过大
+	\item 受限于社交媒体的语境动态演变，将已有知识库当做查找表会遗漏社交媒体上的事件
+\end{itemize}
+
+%\vskip
+
+{\color{blue} 我们在K2Social框架下的方法：}
+\begin{itemize}
+	\item 从知识库中抽取和某个类别相关的主题（代价小）
+	\item 随着社交媒体数据流的到来不断更新主题（适应社交媒体的语境动态演变）
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{\noindent 我们的方法}
 面向概念类的迁移学习方法\textsc{TransDetector}，在K2Social框架下，分为三个阶段：
 \vspace{-6mm}
 \begin{columns}[t]
@@ -129,7 +157,7 @@
 
 
 \begin{frame}
-\frametitle{\textsc{TransDetector}: 阶段1 (基于知识库结构的主题抽取) (1/2)}	
+\frametitle{\noindent \textsc{TransDetector}: 阶段1 (基于知识库结构的主题抽取) (1/2)}	
 %Taking the category \textit{Military} as an example, we extract \textit{Military}'s category-level topic \(\bm{h_{Military}}\).
 \vspace{-4mm}
 \begin{figure}[h]
@@ -143,28 +171,28 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{\textsc{TransDetector}: 阶段1 (基于知识库结构的主题抽取) (2/2)}	
+\frametitle{\noindent \textsc{TransDetector}: 阶段1 (基于知识库结构的主题抽取) (2/2)}	
 \begin{columns}
 \begin{column}{0.78\paperwidth}
-\onslide<1-4>{
+%\onslide<1-4>{
 \footnotesize
 Military, Military\_terminology, Military\_terminology\_of\_Pakistan, Cold\_War\_terminology, Glossaries\_of\_the\_military, ...
-}
+%}
 
-\onslide<2-4>{
+%\onslide<2-4>{
 {\color{red}$\Rightarrow$}
 
 {\footnotesize\color{red}Towarzysz\_pancerny, Derek\_Prince,No.\_21\_Squadron\_RAF,
 Benjamin\_Chew\_Tilghman,H.\_W.\_Gretton, ...}
-}
+%}
 
-\onslide<3-4>{
+%\onslide<3-4>{
 {\color{blue}$\Rightarrow$}
 
 {\color{blue}army (183815), air (141047), military (123486), force (116122), battle (95039), forces (94469), command (79866), ship (79478), german(76323), ... 括号中为原始词频}
-}
+%}
 
-\onslide<4>{
+%\onslide<4>{
 {\color{blue}$\Rightarrow$}
 
 {\color{blue}army (742848), military (394538), air (390291), command (389632), 
@@ -172,29 +200,29 @@ force (366014),
 regiment (364938), 
 forces (319349), 
 squadron (306569), ..., german (107399), ... 括号中为卡方分数}
-}
+%}
 \end{column}
 
 \begin{column}{0.2\paperwidth}
-\onslide<1-4>{
+%\onslide<1-4>{
 %	\vspace{20mm}
 	{\color{black}\textit{分类类别}}
-}
+%}
 
-\onslide<2-4>{
+%\onslide<2-4>{
 	\vspace{5mm}
 	{\color{red}\textit{实体对应的页面}}
-}
+%}
 
-\onslide<3-4>{
+%\onslide<3-4>{
 	\vspace{5mm}
 	{\color{blue}\textit{原始主题}}
-}
+%}
 
-\onslide<4>{
+%\onslide<4>{
 	\vspace{9mm}
 	{\color{blue}\textit{经卡方分数重计算之后的主题}}
-}
+%}
 
 \end{column}
 
@@ -208,7 +236,7 @@ squadron (306569), ..., german (107399), ... 括号中为卡方分数}
 
 
 \begin{frame}
-\frametitle{\textsc{TransDetector}: 阶段2（从知识库到社交媒体的迁移学习）(1/3)}	
+\frametitle{\noindent \textsc{TransDetector}: 阶段2（从知识库到社交媒体的迁移学习）(1/3)}
 将知识库中分类类别$c$对应的主题 \(\{\bm{h_c}\}_{c=1}^{K_{KB}}\)迁移到目标域，使用CTrans-LDA.
 \vspace{-3mm}
 \begin{figure}[h]
@@ -239,7 +267,7 @@ squadron (306569), ..., german (107399), ... 括号中为卡方分数}
 
 %TODO CTrans-LDA 2
 \begin{frame}
-\frametitle{\textsc{TransDetector}: 阶段2（从知识库到社交媒体的迁移学习）(2/3)}	
+\frametitle{\noindent \textsc{TransDetector}: 阶段2（从知识库到社交媒体的迁移学习）(2/3)}	
 
 下图是对称先验先验VS非对称先验的例子。
 \(\bm{\phi_k} \sim Dir(\bm{\beta}+ \bm{\tau_k})\)中的\(\bm{\tau_k}\)作用非常明显的，例如\(\tau_{Military,army}/\tau_{Military,basketball}=203\)。
@@ -266,7 +294,7 @@ squadron (306569), ..., german (107399), ... 括号中为卡方分数}
 
 %TODO CTrans-LDA 3
 \begin{frame}
-\frametitle{\textsc{TransDetector}: 阶段2（从知识库到社交媒体的迁移学习）(3/3)}	
+\frametitle{\noindent \textsc{TransDetector}: 阶段2（从知识库到社交媒体的迁移学习）(3/3)}	
 使用吉布斯采样求解CTrans-LDA：
 \begin{itemize}
 	\item 初始化概率\(\hat{q}_{k|v}\)使得社交媒体中的主题能够与知识库中的主题对齐.
@@ -295,7 +323,7 @@ squadron (306569), ..., german (107399), ... 括号中为卡方分数}
 
 
 \begin{frame}
-\frametitle{\textsc{TransDetector}：阶段3（在迁移学习后的时间序列上进行事件检测）(1/2)}	
+\frametitle{\noindent \textsc{TransDetector}：阶段3（在迁移学习后的时间序列上进行事件检测）(1/2)}	
 \begin{figure}[h]
 		\setlength{\abovecaptionskip}{0.cm}
         \setlength{\belowcaptionskip}{0.cm}
@@ -307,7 +335,7 @@ squadron (306569), ..., german (107399), ... 括号中为卡方分数}
 \end{frame}
 
 \begin{frame}
-\frametitle{\textsc{TransDetector}：阶段3（在迁移学习后时间序列上进行事件检测） (2/2)}
+\frametitle{\noindent \textsc{TransDetector}：阶段3（在迁移学习后时间序列上进行事件检测） (2/2)}
 因自适应社交媒体语境动态演变，\textsc{TransDetector}能够更精确检测事件。
 \begin{enumerate}
 	\item 检测事件候选词
@@ -327,7 +355,7 @@ squadron (306569), ..., german (107399), ... 括号中为卡方分数}
 
 
 \begin{frame}
-\frametitle{实验设置（1/3）}
+\frametitle{\noindent 实验设置（1/3）}
 \noindent 数据集
 \begin{itemize}
 	\item 知识库：英文维基百科\footnote{\tiny{\url{https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-categorylinks.sql.gz}}}\ \footnote{\tiny{\url{https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2}}}，3,212,435篇维基页面，973,125个概念类别，\textsc{TransDetector}取$K_{\bm{KB}}=50$.
@@ -340,7 +368,7 @@ squadron (306569), ..., german (107399), ... 括号中为卡方分数}
 \end{frame}
 
 \begin{frame}
-\frametitle{实验设置（2/3）}
+\frametitle{\noindent 实验设置（2/3）}
 \noindent 事件评测基准
 \begin{itemize}
 	\item 基准1（Benchmark1）： 随\textit{Edinburgh twitter corpus}数据集附带的手工标注的27个事件\footnote{\tiny{\url{http://demeter.inf.ed.ac.uk/cross/docs/Newswire_Events.tar.gz}}}.
@@ -384,7 +412,7 @@ rebels capture interational tripoli airport      & 21/08/2011 & 13       \tikzma
 \end{frame}
 
 \begin{frame}
-\frametitle{实验设置（3/3）}
+\frametitle{\noindent 实验设置（3/3）}
 \noindent 事件评测基准
 \begin{itemize}
 	%\item 基准1（Benchmark1）： 随\textit{Edinburgh twitter corpus}数据集附带的手工标注的27个事件\footnote{\url{http://demeter.inf.ed.ac.uk/cross/docs/Newswire_Events.tar.gz}}，{\color{red}但遗漏多个重要事件，如，“\textit{飓风艾琳登陆美国}”，“\textit{电影哈利波特与死亡圣器（下）上映}”等}。
@@ -399,7 +427,7 @@ rebels capture interational tripoli airport      & 21/08/2011 & 13       \tikzma
 
 
 \begin{frame}
-\frametitle{实验结果：基于知识库结构的主题抽取质量}	
+\frametitle{\noindent 实验结果：基于知识库结构的主题抽取质量}	
 \begin{table}[h]
 \setlength{\abovecaptionskip}{0.cm}%set the distance between caption and table to 0 cm.
 \setlength{\belowcaptionskip}{0.cm}
@@ -434,7 +462,7 @@ GID& \#words*  & words  & NPMI & GID& \#words*& words & NPMI \\ \hline
 
 
 \begin{frame}
-\frametitle{实验结果：基于知识库结构的主题抽取质量}	
+\frametitle{\noindent 实验结果：基于知识库结构的主题抽取质量}	
 \begin{figure}[h]
 	\setlength{\abovecaptionskip}{0.cm}
 	\setlength{\belowcaptionskip}{0.cm}
@@ -450,7 +478,7 @@ GID& \#words*  & words  & NPMI & GID& \#words*& words & NPMI \\ \hline
 %------------------------------
 %page 2
 \begin{frame}
-\frametitle{实验结果：迁移学习效果以及自适应社交媒体语境动态演变的效果}
+\frametitle{\noindent 实验结果：迁移学习效果以及自适应社交媒体语境动态演变的效果}
 \begin{table}
 \setlength{\abovecaptionskip}{0.cm}%set the distance between caption and table to 0 cm.
 \setlength{\belowcaptionskip}{0.cm}
@@ -481,7 +509,7 @@ squadron & fly & cancer & body & syria & world & battle & attack & htc & apps\\
 
 
 \begin{frame}
-\frametitle{实验结果：事件检测效果}	
+\frametitle{\noindent 实验结果：事件检测效果}	
 \noindent \textsc{TransDetector}在保证召回率的同时，将准确率提升9\%
 
 \begin{table}[h]
@@ -514,7 +542,7 @@ squadron & fly & cancer & body & syria & world & battle & attack & htc & apps\\
 
 
 \begin{frame}
-\frametitle{实验结果：事件检测效果}
+\frametitle{\noindent 实验结果：事件检测效果}
 \noindent \textsc{TransDetector}在较小规模的事件上召回率明显高于已有方法。
 \vfill
 \begin{figure}[h]
@@ -528,7 +556,7 @@ squadron & fly & cancer & body & syria & world & battle & attack & htc & apps\\
 \end{frame}
 
 \begin{frame}
-\frametitle{实验结果：事件检测效果}	
+\frametitle{\noindent 实验结果：事件检测效果}	
 \noindent \textsc{TransDetector}在较小规模的事件上召回率明显高于已有方法。
 \begin{table}
 \setlength{\abovecaptionskip}{0.cm}%set the distance between caption and table to 0 cm.
@@ -565,7 +593,7 @@ squadron & fly & cancer & body & syria & world & battle & attack & htc & apps\\
 
 
 \begin{frame}
-\frametitle{TransDetector方法小结}
+\frametitle{\noindent TransDetector方法小结}
 \begin{columns}
 \column{0.75\textwidth}
 
